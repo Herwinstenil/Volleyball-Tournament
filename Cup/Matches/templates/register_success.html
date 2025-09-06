@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful - Volleyball Cup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- Body & Background --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(circle at 30% 40%, #ff9a9e 0%, #fecfef 25%, #fecfef 50%),
+                radial-gradient(circle at 80% 10%, #a8edea 0%, #fed6e3 25%, transparent 50%),
+                radial-gradient(circle at 40% 80%, #ffecd2 0%, #fcb69f 25%, transparent 50%),
+                linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-size: 400% 400%, 300% 300%, 250% 250%, 100% 100%;
+            animation: gradientShift 15s ease infinite;
+            position: relative;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%, 100% 0%, 50% 100%, 0% 0%;
+            }
+
+            25% {
+                background-position: 50% 0%, 0% 50%, 100% 0%, 25% 25%;
+            }
+
+            50% {
+                background-position: 100% 50%, 50% 100%, 0% 50%, 50% 50%;
+            }
+
+            75% {
+                background-position: 50% 100%, 100% 50%, 50% 0%, 75% 75%;
+            }
+        }
+
+        /* --- Floating Particles --- */
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s infinite linear;
+        }
+
+        .particle:nth-child(odd) {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- Success Message Container --- */
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-message {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 60px 40px;
+            border-radius: 25px;
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.1),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+            animation: slideInScale 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            transform: scale(0.8) translateY(60px);
+            opacity: 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.3),
+                    transparent);
+            animation: shimmer 2s ease-in-out 0.5s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes slideInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(60px);
+            }
+
+            70% {
+                transform: scale(1.05) translateY(-10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* --- Icon Animation --- */
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 20px;
+            display: inline-block;
+            animation: bounceIn 1s ease 0.8s forwards;
+            transform: scale(0);
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.3);
+            }
+
+            70% {
+                transform: scale(0.9);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .success-message h1 {
+            color: #2c3e50;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleSlide 1s ease 1.2s forwards;
+            transform: translateX(-50px);
+            opacity: 0;
+        }
+
+        @keyframes titleSlide {
+            0% {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .success-message p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #555;
+            line-height: 1.6;
+            animation: fadeInUp 0.8s ease 1.5s forwards;
+            transform: translateY(30px);
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* --- Button Styling --- */
+        .btn-container {
+            animation: fadeInUp 0.8s ease 1.8s forwards;
+            opacity: 0;
+        }
+
+        .success-message a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-message a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .success-message a:hover::before {
+            left: 100%;
+        }
+
+        .success-message a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .success-message a:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* --- Confetti Animation --- */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            animation: confettiFall 3s ease-out infinite;
+        }
+
+        .confetti:nth-child(2n) {
+            background: #4ecdc4;
+        }
+
+        .confetti:nth-child(3n) {
+            background: #45b7d1;
+        }
+
+        .confetti:nth-child(4n) {
+            background: #f9ca24;
+        }
+
+        .confetti:nth-child(5n) {
+            background: #f0932b;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- Pulse Effect --- */
+        .pulse-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 0.1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 1200px) {
+            .success-message {
+                padding: 70px 60px;
+            }
+
+            .success-message h1 {
+                font-size: 3.2rem;
+            }
+
+            .success-message p {
+                font-size: 1.4rem;
+            }
+
+            .success-icon {
+                font-size: 4.2rem;
+            }
+
+            .success-message a {
+                font-size: 1.1rem;
+                padding: 15px 35px;
+            }
+        }
+
+        @media (max-width: 1199px) and (min-width: 992px) {
+            .success-message {
+                padding: 50px 40px;
+            }
+
+            .success-message h1 {
+                font-size: 2.8rem;
+            }
+
+            .success-message p {
+                font-size: 1.25rem;
+            }
+
+            .success-icon {
+                font-size: 3.5rem;
+            }
+
+            .success-message a {
+                font-size: 1rem;
+                padding: 12px 30px;
+            }
+        }
+
+        @media (max-width: 991px) and (min-width: 768px) {
+            .container {
+                padding: 20px;
+                height: auto;
+            }
+
+            .success-message {
+                padding: 40px 30px;
+                width: 90%;
+            }
+
+            .success-icon {
+                font-size: 3.2rem;
+            }
+
+            .success-message h1 {
+                font-size: 2.2rem;
+            }
+
+            .success-message p {
+                font-size: 1.1rem;
+            }
+
+            .success-message a {
+                font-size: 0.95rem;
+                padding: 12px 25px;
+            }
+        }
+
+        @media (max-width: 767px) and (min-width: 576px) {
+            body {
+                overflow-y: auto;
+            }
+
+            .container {
+                height: auto;
+                padding: 15px;
+            }
+
+            .success-message {
+                width: 100%;
+                padding: 30px 20px;
+                border-radius: 18px;
+            }
+
+            .success-icon {
+                font-size: 2.8rem;
+            }
+
+            .success-message h1 {
+                font-size: 1.8rem;
+            }
+
+            .success-message p {
+                font-size: 1rem;
+            }
+
+            .success-message a {
+                font-size: 0.9rem;
+                padding: 10px 22px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            body {
+                overflow-y: auto;
+                padding: 10px;
+            }
+
+            .container {
+                height: auto;
+                padding: 10px;
+            }
+
+            .success-message {
+                width: 100%;
+                padding: 25px 15px;
+                border-radius: 15px;
+            }
+
+            .success-icon {
+                font-size: 2.4rem;
+                margin-bottom: 15px;
+            }
+
+            .success-message h1 {
+                font-size: 1.5rem;
+            }
+
+            .success-message p {
+                font-size: 0.9rem;
+                margin-bottom: 20px;
+            }
+
+            .success-message a {
+                font-size: 0.85rem;
+                padding: 8px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background pulse effect -->
+    <div class="pulse-bg"></div>
+
+    <!-- Success Message -->
+    <div class="container">
+        <div class="success-message">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h1>Registration Successful!</h1>
+            <p>🏐 Your team has been successfully registered for the <strong>Roriri Volleyball Cup 2025</strong>. Get
+                ready to spike your way to victory!</p>
+            <div class="btn-container">
+                <a href="{% url 'home' %}">
+                    <i class="fas fa-home"></i>
+                    Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 6 + 4 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = Math.random() * 3 + 6 + 's';
+                document.body.appendChild(particle);
+
+                // Remove particle after animation completes
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 9000);
+            }
+        }
+
+        // Create confetti
+        function createConfetti() {
+            const confettiCount = 30;
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                confetti.style.animationDuration = Math.random() * 2 + 3 + 's';
+                document.body.appendChild(confetti);
+
+                // Remove confetti after animation
+                setTimeout(() => {
+                    if (confetti.parentNode) {
+                        confetti.parentNode.removeChild(confetti);
+                    }
+                }, 6000);
+            }
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function () {
+            createParticles();
+
+            // Create confetti after a delay
+            setTimeout(createConfetti, 1000);
+
+            // Recreate particles and confetti every 10 seconds (reduced frequency)
+            setInterval(() => {
+                createParticles();
+                createConfetti();
+            }, 10000);
+        });
+
+        // Add click effect to button
+        document.querySelector('.success-message a').addEventListener('click', function (e) {
+            const button = e.currentTarget;
+            const ripple = document.createElement('span');
+            const rect = button.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                pointer-events: none;
+            `;
+
+            button.style.position = 'relative';
+            button.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+
+        // Add CSS for ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+
+</body>
+
+</html>

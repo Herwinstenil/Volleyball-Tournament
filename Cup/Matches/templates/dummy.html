@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Volleyball Cup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 300% 300%;
+            animation: gradientShift 20s ease infinite;
+            min-height: 100vh;
+        }
+        @keyframes gradientShift {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 100% 0%;
+            }
+            50% {
+                background-position: 50% 100%;
+            }
+            75% {
+                background-position: 0% 100%;
+            }
+        }
+        nav {
+            background: rgba(0, 74, 173, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 74, 173, 0.3);
+        }
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        nav a {
+            color: white;
+            margin: 0 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+        nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            border-radius: 25px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        nav a:hover::before {
+            opacity: 1;
+        }
+        nav a:hover {
+            transform: translateY(-2px) scale(1.05);
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .logo-container {
+            position: relative;
+            border-radius: 15px;
+            padding: 8px;
+        }
+        .logo-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        .logo-container img {
+            height: 40px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 40px 0;
+            position: relative;
+        }
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s ease-in-out infinite;
+        }
+        .bg-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+        }
+        .bg-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 5s;
+        }
+        .bg-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            width: 40px;
+            height: 40px;
+            animation-delay: 10s;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+                opacity: 0.7;
+            }
+            66% {
+                transform: translateY(15px) rotate(240deg);
+                opacity: 0.5;
+            }
+        }
+        .container h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff, #f8f9fa, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 50px;
+            position: relative;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+                transform: scale(1);
+            }
+            100% {
+                text-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.4);
+                transform: scale(1.02);
+            }
+        }
+        .container h2::after {
+            content: '🏐';
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            animation: bounce 2s ease infinite;
+        }
+        @keyframes bounce {
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(-50%);
+            }
+            40% {
+                transform: translateY(-70%);
+            }
+            60% {
+                transform: translateY(-65%);
+            }
+        }
+        h3 {
+            margin-top: 40px;
+            color: #004aad;
+            font-size: 1.8rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            animation: titleSlide 1s ease forwards;
+        }
+        @keyframes titleSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+            transition: all 0.6s ease;
+            transform: translateX(-50%);
+        }
+        h3:hover::after {
+            width: 100%;
+        }
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            75% {
+                transform: translateX(5px);
+            }
+        }
+        footer {
+            background: linear-gradient(135deg, rgba(0, 74, 173, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 20px 10px;
+            font-size: 1rem;
+            margin-top: 40px;
+            animation: slideInFromBottom 1s ease-in;
+            position: relative;
+            overflow: hidden;
+        }
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #feca57, transparent);
+            animation: shimmer 3s infinite;
+        }
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        footer p {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        footer p:hover {
+            color: #ff6b6b;
+            transform: scale(1.05);
+        }
+        .contact-info {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: fadeInLeft 1s ease-out both;
+        }
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        hr {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #feca57, transparent);
+            margin: 30px auto;
+            max-width: 600px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #feca57;
+            }
+            to {
+                box-shadow: 0 0 20px #feca57;
+            }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-element"></div>
+    <div class="bg-element"></div>
+    <div class="bg-element"></div>
+    <nav>
+        <div class="logo-container">
+            <div onclick="window.location.href='/';" style="text-decoration: none;">
+                <img src="/media/media_files/roriri_logo.png" alt="Roriri Volleyball Cup Logo">
+            </div>
+        </div>
+        <div>
+            <a href="/register"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="/schedule"><i class="fas fa-calendar-alt"></i> Fixtures</a>
+            <a href="/scores"><i class="fas fa-trophy"></i> Scores</a>
+            <a href="/gallery"><i class="fas fa-images"></i> Gallery</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Gallery</h2>
+    <div style={{ height: '600px', position: 'relative' }} className=''>
+        <h1 className='text-center text-black text-5xl font-normal '>Intern <span className='text-green-400'>To</span> Our Employees</h1>
+  <CircularGallery bend={3} textColor="black" borderRadius={0.05} scrollEase={0.02} />
+    </div>
+import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from "ogl";
+import { useEffect, useRef } from "react";
+import student1 from "../../../assets/students/image.png"
+function debounce(func, wait) {
+  let timeout;
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
+function lerp(p1, p2, t) {
+  return p1 + (p2 - p1) * t;
+}
+function autoBind(instance) {
+  const proto = Object.getPrototypeOf(instance);
+  Object.getOwnPropertyNames(proto).forEach((key) => {
+    if (key !== "constructor" && typeof instance[key] === "function") {
+      instance[key] = instance[key].bind(instance);
+    }
+  });
+}
+function createTextTexture(gl, text, font = "bold 30px monospace", color = "black") {
+  const canvas = document.createElement("canvas");
+  const context = canvas.getContext("2d");
+  context.font = font;
+  const metrics = context.measureText(text);
+  const textWidth = Math.ceil(metrics.width);
+  const textHeight = Math.ceil(parseInt(font, 10) * 1.2);
+  canvas.width = textWidth + 20;
+  canvas.height = textHeight + 20;
+  context.font = font;
+  context.fillStyle = color;
+  context.textBaseline = "middle";
+  context.textAlign = "center";
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.fillText(text, canvas.width / 2, canvas.height / 2);
+  const texture = new Texture(gl, { generateMipmaps: false });
+  texture.image = canvas;
+  return { texture, width: canvas.width, height: canvas.height };
+}
+class Title {
+  constructor({ gl, plane, renderer, text, textColor = "#545050", font = "20px sans-serif" }) {
+    autoBind(this);
+    this.gl = gl;
+    this.plane = plane;
+    this.renderer = renderer;
+    this.text = text;
+    this.textColor = textColor;
+    this.font = font;
+    this.createMesh();
+  }
+  createMesh() {
+    const { texture, width, height } = createTextTexture(this.gl, this.text, this.font, this.textColor);
+    const geometry = new Plane(this.gl);
+    const program = new Program(this.gl, {
+      vertex: `
+        attribute vec3 position;
+        attribute vec2 uv;
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }
+      `,
+      fragment: `
+        precision highp float;
+        uniform sampler2D tMap;
+        varying vec2 vUv;
+        void main() {
+          vec4 color = texture2D(tMap, vUv);
+          if (color.a < 0.1) discard;
+          gl_FragColor = color;
+        }
+      `,
+      uniforms: { tMap: { value: texture } },
+      transparent: true,
+    });
+    this.mesh = new Mesh(this.gl, { geometry, program });
+    const aspect = width / height;
+    const textHeight = this.plane.scale.y * 0.15;
+    const textWidth = textHeight * aspect;
+    this.mesh.scale.set(textWidth, textHeight, 1);
+    this.mesh.position.y = -this.plane.scale.y * 0.5 - textHeight * 0.5 - 0.05;
+    this.mesh.setParent(this.plane);
+  }
+}
+class Media {
+  constructor({
+    geometry,
+    gl,
+    image,
+    index,
+    length,
+    renderer,
+    scene,
+    screen,
+    text,
+    viewport,
+    bend,
+    textColor,
+    borderRadius = 0,
+    font,
+  }) {
+    this.extra = 0;
+    this.geometry = geometry;
+    this.gl = gl;
+    this.image = image;
+    this.index = index;
+    this.length = length;
+    this.renderer = renderer;
+    this.scene = scene;
+    this.screen = screen;
+    this.text = text;
+    this.viewport = viewport;
+    this.bend = bend;
+    this.textColor = textColor;
+    this.borderRadius = borderRadius;
+    this.font = font;
+    this.createShader();
+    this.createMesh();
+    this.createTitle();
+    this.onResize();
+  }
+  createShader() {
+    const texture = new Texture(this.gl, { generateMipmaps: false });
+    this.program = new Program(this.gl, {
+      depthTest: false,
+      depthWrite: false,
+      vertex: `
+        precision highp float;
+        attribute vec3 position;
+        attribute vec2 uv;
+        uniform mat4 modelViewMatrix;
+        uniform mat4 projectionMatrix;
+        uniform float uTime;
+        uniform float uSpeed;
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          vec3 p = position;
+          p.z = (sin(p.x * 4.0 + uTime) * 1.5 + cos(p.y * 2.0 + uTime) * 1.5) * (0.1 + uSpeed * 0.5);
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(p, 1.0);
+        }
+      `,
+      fragment: `
+        precision highp float;
+        uniform vec2 uImageSizes;
+        uniform vec2 uPlaneSizes;
+        uniform sampler2D tMap;
+        uniform float uBorderRadius;
+        varying vec2 vUv;
+        float roundedBoxSDF(vec2 p, vec2 b, float r) {
+          vec2 d = abs(p) - b;
+          return length(max(d, vec2(0.0))) + min(max(d.x, d.y), 0.0) - r;
+        }
+        void main() {
+          vec2 ratio = vec2(
+            min((uPlaneSizes.x / uPlaneSizes.y) / (uImageSizes.x / uImageSizes.y), 1.0),
+            min((uPlaneSizes.y / uPlaneSizes.x) / (uImageSizes.y / uImageSizes.x), 1.0)
+          );
+          vec2 uv = vec2(
+            vUv.x * ratio.x + (1.0 - ratio.x) * 0.5,
+            vUv.y * ratio.y + (1.0 - ratio.y) * 0.5
+          );
+          vec4 color = texture2D(tMap, uv);          
+          float d = roundedBoxSDF(vUv - 0.5, vec2(0.5 - uBorderRadius), uBorderRadius);
+          if(d > 0.0) {
+            discard;
+          }          
+          gl_FragColor = vec4(color.rgb, 1.0);
+        }
+      `,
+      uniforms: {
+        tMap: { value: texture },
+        uPlaneSizes: { value: [0, 0] },
+        uImageSizes: { value: [0, 0] },
+        uSpeed: { value: 0 },
+        uTime: { value: 100 * Math.random() },
+        uBorderRadius: { value: this.borderRadius },
+      },
+      transparent: true,
+    });
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = this.image;
+    img.onload = () => {
+      texture.image = img;
+      this.program.uniforms.uImageSizes.value = [img.naturalWidth, img.naturalHeight];
+    };
+  }
+  createMesh() {
+    this.plane = new Mesh(this.gl, {
+      geometry: this.geometry,
+      program: this.program,
+    });
+    this.plane.setParent(this.scene);
+  }
+  createTitle() {
+    this.title = new Title({
+      gl: this.gl,
+      plane: this.plane,
+      renderer: this.renderer,
+      text: this.text,
+      textColor: this.textColor,
+      fontFamily: this.font,
+    });
+  }
+  update(scroll, direction) {
+    this.plane.position.x = this.x - scroll.current - this.extra;
+    const x = this.plane.position.x;
+    const H = this.viewport.width / 2;
+    if (this.bend === 0) {
+      this.plane.position.y = 0;
+      this.plane.rotation.z = 0;
+    } else {
+      const B_abs = Math.abs(this.bend);
+      const R = (H * H + B_abs * B_abs) / (2 * B_abs);
+      const effectiveX = Math.min(Math.abs(x), H);
+      const arc = R - Math.sqrt(R * R - effectiveX * effectiveX);
+      if (this.bend > 0) {
+        this.plane.position.y = -arc;
+        this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R);
+      } else {
+        this.plane.position.y = arc;
+        this.plane.rotation.z = Math.sign(x) * Math.asin(effectiveX / R);
+      }
+    }
+    this.speed = scroll.current - scroll.last;
+    this.program.uniforms.uTime.value += 0.04;
+    this.program.uniforms.uSpeed.value = this.speed;
+    const planeOffset = this.plane.scale.x / 2;
+    const viewportOffset = this.viewport.width / 2;
+    this.isBefore = this.plane.position.x + planeOffset < -viewportOffset;
+    this.isAfter = this.plane.position.x - planeOffset > viewportOffset;
+    if (direction === "right" && this.isBefore) {
+      this.extra -= this.widthTotal;
+      this.isBefore = this.isAfter = false;
+    }
+    if (direction === "left" && this.isAfter) {
+      this.extra += this.widthTotal;
+      this.isBefore = this.isAfter = false;
+    }
+  }
+  onResize({ screen, viewport } = {}) {
+    if (screen) this.screen = screen;
+    if (viewport) {
+      this.viewport = viewport;
+      if (this.plane.program.uniforms.uViewportSizes) {
+        this.plane.program.uniforms.uViewportSizes.value = [this.viewport.width, this.viewport.height];
+      }
+    }
+    this.scale = this.screen.height / 1500;
+    this.plane.scale.y = (this.viewport.height * (900 * this.scale)) / this.screen.height;
+    this.plane.scale.x = (this.viewport.width * (700 * this.scale)) / this.screen.width;
+    this.plane.program.uniforms.uPlaneSizes.value = [this.plane.scale.x, this.plane.scale.y];
+    this.padding = 2;
+    this.width = this.plane.scale.x + this.padding;
+    this.widthTotal = this.width * this.length;
+    this.x = this.width * this.index;
+  }
+}
+class App {
+  constructor(
+    container,
+    {
+      items,
+      bend,
+      textColor = "#ffffff",
+      borderRadius = 0,
+      font = "bold 30px Figtree",
+      scrollSpeed = 2,
+      scrollEase = 0.05,
+    } = {}
+  ) {
+    document.documentElement.classList.remove("no-js");
+    this.container = container;
+    this.scrollSpeed = scrollSpeed;
+    this.scroll = { ease: scrollEase, current: 0, target: 0, last: 0 };
+    this.onCheckDebounce = debounce(this.onCheck, 200);
+    this.createRenderer();
+    this.createCamera();
+    this.createScene();
+    this.onResize();
+    this.createGeometry();
+    this.createMedias(items, bend, textColor, borderRadius, font);
+    this.update();
+    this.addEventListeners();
+  }
+  createRenderer() {
+    this.renderer = new Renderer({ alpha: true });
+    this.gl = this.renderer.gl;
+    this.gl.clearColor(0, 0, 0, 0);
+    this.container.appendChild(this.gl.canvas);
+  }
+  createCamera() {
+    this.camera = new Camera(this.gl);
+    this.camera.fov = 45;
+    this.camera.position.z = 20;
+  }
+  createScene() {
+    this.scene = new Transform();
+  }
+  createGeometry() {
+    this.planeGeometry = new Plane(this.gl, {
+      heightSegments: 50,
+      widthSegments: 100,
+    });
+  }
+  createMedias(items, bend = 1, textColor, borderRadius, font) {
+    const defaultItems = [
+      { image: `${student1}`, text: "Kishore - MERN Stack Developer" },
+      { image: `https://picsum.photos/seed/2/800/600?grayscale`, text: "Desk Setup" },
+      { image: `https://picsum.photos/seed/3/800/600?grayscale`, text: "Waterfall" },
+      { image: `https://picsum.photos/seed/4/800/600?grayscale`, text: "Strawberries" },
+      { image: `https://picsum.photos/seed/5/800/600?grayscale`, text: "Deep Diving" },
+      { image: `https://picsum.photos/seed/16/800/600?grayscale`, text: "Train Track" },
+      { image: `https://picsum.photos/seed/17/800/600?grayscale`, text: "Santorini" },
+      { image: `https://picsum.photos/seed/8/800/600?grayscale`, text: "Blurry Lights" },
+      { image: `https://picsum.photos/seed/9/800/600?grayscale`, text: "New York" },
+      { image: `https://picsum.photos/seed/10/800/600?grayscale`, text: "Good Boy" },
+      { image: `https://picsum.photos/seed/21/800/600?grayscale`, text: "Coastline" },
+      { image: `https://picsum.photos/seed/12/800/600?grayscale`, text: "Palm Trees" },
+    ];
+    const galleryItems = items && items.length ? items : defaultItems;
+    this.mediasImages = galleryItems.concat(galleryItems);
+    this.medias = this.mediasImages.map((data, index) => {
+      return new Media({
+        geometry: this.planeGeometry,
+        gl: this.gl,
+        image: data.image,
+        index,
+        length: this.mediasImages.length,
+        renderer: this.renderer,
+        scene: this.scene,
+        screen: this.screen,
+        text: data.text,
+        viewport: this.viewport,
+        bend,
+        textColor,
+        borderRadius,
+        font,
+      });
+    });
+  }
+  onTouchDown(e) {
+    this.isDown = true;
+    this.scroll.position = this.scroll.current;
+    this.start = e.touches ? e.touches[0].clientX : e.clientX;
+  }
+  onTouchMove(e) {
+    if (!this.isDown) return;
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const distance = (this.start - x) * (this.scrollSpeed * 0.025);
+    this.scroll.target = this.scroll.position + distance;
+  }
+  onTouchUp() {
+    this.isDown = false;
+    this.onCheck();
+  }
+  onWheel(e) {
+    const delta = e.deltaY || e.wheelDelta || e.detail;
+    this.scroll.target += delta > 0 ? this.scrollSpeed : -this.scrollSpeed;
+    this.onCheckDebounce();
+  }
+  onCheck() {
+    if (!this.medias || !this.medias[0]) return;
+    const width = this.medias[0].width;
+    const itemIndex = Math.round(Math.abs(this.scroll.target) / width);
+    const item = width * itemIndex;
+    this.scroll.target = this.scroll.target < 0 ? -item : item;
+  }
+  onResize() {
+    this.screen = {
+      width: this.container.clientWidth,
+      height: this.container.clientHeight,
+    };
+    this.renderer.setSize(this.screen.width, this.screen.height);
+    this.camera.perspective({
+      aspect: this.screen.width / this.screen.height,
+    });
+    const fov = (this.camera.fov * Math.PI) / 180;
+    const height = 2 * Math.tan(fov / 2) * this.camera.position.z;
+    const width = height * this.camera.aspect;
+    this.viewport = { width, height };
+    if (this.medias) {
+      this.medias.forEach((media) => media.onResize({ screen: this.screen, viewport: this.viewport }));
+    }
+  }
+  update() {
+    this.scroll.current = lerp(this.scroll.current, this.scroll.target, this.scroll.ease);
+    const direction = this.scroll.current > this.scroll.last ? "right" : "left";
+    if (this.medias) {
+      this.medias.forEach((media) => media.update(this.scroll, direction));
+    }
+    this.renderer.render({ scene: this.scene, camera: this.camera });
+    this.scroll.last = this.scroll.current;
+    this.raf = window.requestAnimationFrame(this.update.bind(this));
+  }
+  addEventListeners() {
+    this.boundOnResize = this.onResize.bind(this);
+    this.boundOnWheel = this.onWheel.bind(this);
+    this.boundOnTouchDown = this.onTouchDown.bind(this);
+    this.boundOnTouchMove = this.onTouchMove.bind(this);
+    this.boundOnTouchUp = this.onTouchUp.bind(this);
+    window.addEventListener("resize", this.boundOnResize);
+    window.addEventListener("mousewheel", this.boundOnWheel);
+    window.addEventListener("wheel", this.boundOnWheel);
+    window.addEventListener("mousedown", this.boundOnTouchDown);
+    window.addEventListener("mousemove", this.boundOnTouchMove);
+    window.addEventListener("mouseup", this.boundOnTouchUp);
+    window.addEventListener("touchstart", this.boundOnTouchDown);
+    window.addEventListener("touchmove", this.boundOnTouchMove);
+    window.addEventListener("touchend", this.boundOnTouchUp);
+  }
+  destroy() {
+    window.cancelAnimationFrame(this.raf);
+    window.removeEventListener("resize", this.boundOnResize);
+    window.removeEventListener("mousewheel", this.boundOnWheel);
+    window.removeEventListener("wheel", this.boundOnWheel);
+    window.removeEventListener("mousedown", this.boundOnTouchDown);
+    window.removeEventListener("mousemove", this.boundOnTouchMove);
+    window.removeEventListener("mouseup", this.boundOnTouchUp);
+    window.removeEventListener("touchstart", this.boundOnTouchDown);
+    window.removeEventListener("touchmove", this.boundOnTouchMove);
+    window.removeEventListener("touchend", this.boundOnTouchUp);
+    if (this.renderer && this.renderer.gl && this.renderer.gl.canvas.parentNode) {
+      this.renderer.gl.canvas.parentNode.removeChild(this.renderer.gl.canvas);
+    }
+  }
+}
+export default function CircularGallery({
+  items,
+  bend = 3,
+  textColor = "#ffffff",
+  borderRadius = 0.05,
+  font = "bold 30px Figtree",
+  scrollSpeed = 2,
+  scrollEase = 0.05,
+}) {
+  const containerRef = useRef(null);
+  useEffect(() => {
+    const app = new App(containerRef.current, { items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase });
+    return () => {
+      app.destroy();
+    };
+  }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
+  return <div className="w-full h-full overflow-hidden cursor-grab active:cursor-grabbing" ref={containerRef} />;
+}
+    <footer>
+        <div
+            style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+            <div class="map-container" style="flex: 1 1 300px; min-height: 350px;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11487.327837261768!2d77.57889418196686!3d8.522276781053657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04692c8b82209f%3A0xa00060055fec4e1!2sRORIRI%20SOFTWARE%20SOLUTIONS%20PVT.LTD.!5e0!3m2!1sen!2sin!4v1735800795252!5m2!1sen!2sin"
+                    width="100%" height="100%" style="border:0; min-height: 350px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" title="RORIRI SOFTWARE SOLUTIONS PVT. LTD. Location">
+                </iframe>
+            </div>
+            <div class="contact-info" style="flex: 1 1 300px; text-align: left; margin-left: 40px;">
+                <h3 style="margin-bottom: 20px; color: #feca57;"><i class="fas fa-phone-alt"
+                        style="transform: rotate(90deg); display:inline-block;"></i> Contact Us</h3>
+                <p style="margin-bottom: 10px;"><strong><i class="fas fa-user"></i> Coordinator:</strong> SAM</p>
+                <p style="margin-bottom: 10px;"><strong><i class="fas fa-mobile-alt"></i> Phone:</strong> +91 9715665066
+                </p>
+                <p style="margin-bottom: 10px;"><strong><i class="fas fa-envelope"></i> Email:</strong>
+                    sports@company.com</p>
+                <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> RORIRI IT PARK, NALLANATHAPURAM, Kalakkad, Keela Karuvelankulam, Tamil Nadu 627502</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <hr>
+            <p>&copy; 2025 Roriri Volleyball Cup | All Rights Reserved | Made with ❤️ for Volleyball</p>
+        </div>
+    </footer>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            observer.observe(item);
+        });
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = Math.random() * 6 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.background = 'rgba(255, 255, 255, 0.4)';
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = '100%';
+            particle.style.pointerEvents = 'none';
+            particle.style.animation = 'floatUp 8s linear forwards';
+            document.body.appendChild(particle);
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 8000);
+        }
+        const particleStyle = document.createElement('style');
+        particleStyle.textContent = `
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(particleStyle);
+        setInterval(createParticle, 2000);
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('load', function () {
+                this.style.opacity = '1';
+                this.style.transform = 'scale(1)';
+            });
+            img.style.opacity = '0';
+            img.style.transform = 'scale(0.9)';
+            img.style.transition = 'all 0.5s ease';
+        });
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function (e) {
+                const ripple = document.createElement('div');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: rippleEffect 0.6s linear;
+                    pointer-events: none;
+                    z-index: 10;
+                `;
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.remove();
+                    }
+                }, 600);
+            });
+        });
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes rippleEffect {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const bgElements = document.querySelectorAll('.bg-element');
+            bgElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.2);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(30px)';
+            container.style.transition = 'all 0.8s ease';
+            setTimeout(() => {
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 300);
+            setTimeout(() => {
+                setInterval(createParticle, 2000);
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

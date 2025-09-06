@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🏐 Live Stadium Scoreboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        /* ===== Page Shell (perfect centering) ===== */
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif, system-ui, -apple-system, Segoe UI, Roboto;
+            color: #fff;
+            background: radial-gradient(circle at 50% 40%, #000 70%, #111 100%);
+        }
+
+        nav {
+            background: rgba(0, 74, 173, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 74, 173, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav a {
+            color: white;
+            margin: 0 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            border-radius: 25px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover::before {
+            opacity: 1;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px) scale(1.05);
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .logo-container {
+            position: relative;
+            border-radius: 15px;
+            padding: 8px;
+        }
+
+        .logo-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container img {
+            height: 40px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .shell {
+            min-height: 100svh;
+            /* mobile-safe viewport */
+            display: grid;
+            place-items: center;
+            /* centers both ways */
+            padding: clamp(12px, 2vw, 24px);
+        }
+
+        .stack {
+            width: min(1200px, 96vw);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(12px, 2.2vw, 24px);
+        }
+
+        /* ===== Header ===== */
+        h1 {
+            margin: 0;
+            text-align: center;
+            font-size: clamp(1.4rem, 3.5vw, 2.5rem);
+            color: #ffcc00;
+            text-shadow: 0 0 16px #ffcc00, 0 0 28px #ff6600;
+            letter-spacing: 0.5px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            cursor: pointer;
+            border: 0;
+            border-radius: 12px;
+            padding: 10px 18px;
+            font-weight: 800;
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
+            background: #ffcc00;
+            color: #000;
+            box-shadow: 0 6px 18px rgba(255, 204, 0, 0.25);
+            transition: transform .15s ease, filter .15s ease, box-shadow .2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.08);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* ===== Boards wrapper (center + scroll if many) ===== */
+        .boards {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 2vw, 18px);
+            max-height: clamp(320px, 70svh, 760px);
+            /* keeps stack centered but scrollable when long */
+            overflow: auto;
+            padding-right: 4px;
+            /* room for scrollbar */
+        }
+
+        /* pretty scrollbar (optional) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+        }
+
+        /* ===== Stadium/List Board ===== */
+        .board {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: clamp(8px, 2vw, 16px);
+            padding: clamp(16px, 2.4vw, 28px);
+            border-radius: 22px;
+            background: rgba(20, 20, 20, 0.92);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 32px rgba(255, 255, 255, 0.18);
+            transition: box-shadow .25s ease, border-color .25s ease, opacity .25s ease;
+        }
+
+        .team {
+            text-align: center;
+            font-weight: 900;
+            font-size: clamp(1.1rem, 2.8vw, 2rem);
+            text-transform: uppercase;
+            text-shadow: 0 0 16px #0ff9, 0 0 26px #0ff6;
+            word-break: break-word;
+        }
+
+        .score {
+            font-weight: 900;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            padding: 0 clamp(16px, 2vw, 32px);
+            line-height: 1;
+            text-align: center;
+        }
+
+        .info {
+            grid-column: 1 / -1;
+            text-align: center;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            color: #bfbfbf;
+            margin-top: 6px;
+            letter-spacing: 1px;
+        }
+
+        /* ===== Status styles ===== */
+        .live {
+            border-color: #1aff1a;
+            box-shadow: 0 0 26px #00ff00aa, 0 0 60px #00ff0040;
+        }
+
+        .live .score {
+            color: #00ff6a;
+            text-shadow: 0 0 18px #00ff6a, 0 0 36px #00ff6a;
+        }
+
+        .finished {
+            opacity: 0.55;
+            border-color: #5a5a5a;
+            box-shadow: none;
+        }
+
+        .finished .score {
+            color: #bdbdbd;
+            text-shadow: none;
+        }
+
+        .upcoming {
+            border-color: #ffea00;
+            box-shadow: 0 0 22px #ffea00aa, 0 0 48px #ffea0040;
+        }
+
+        .upcoming .score {
+            color: #ffea00;
+            text-shadow: 0 0 14px #ffea00, 0 0 28px #ffea00;
+        }
+
+        /* ===== Stadium mode (single big board) ===== */
+        .stadium .board {
+            grid-template-columns: 1fr auto 1fr;
+        }
+
+        /* score flash on update */
+        .flash {
+            animation: flash 0.5s ease-in-out;
+        }
+
+        @keyframes flash {
+            0% {
+                filter: brightness(2);
+                transform: scale(1.02);
+            }
+
+            100% {
+                filter: brightness(1);
+                transform: scale(1);
+            }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (min-width: 1200px) {
+            .stack {
+                width: min(1400px, 92vw);
+            }
+
+            nav a {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 1199px) {
+            nav {
+                padding: 12px 16px;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+                margin: 6px 10px;
+            }
+
+            .board {
+                grid-template-columns: 1fr auto 1fr;
+                padding: 18px;
+            }
+
+            .score {
+                font-size: clamp(1.8rem, 4.5vw, 3rem);
+            }
+        }
+
+        @media (max-width: 991px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            nav div:last-child {
+                margin-top: 10px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 8px 12px;
+                font-size: 1rem;
+            }
+
+            .stack {
+                width: 94%;
+            }
+
+            .board {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 16px;
+            }
+
+            .score {
+                font-size: clamp(1.6rem, 5vw, 2.6rem);
+            }
+        }
+
+        @media (max-width: 767px) {
+            nav div:last-child {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                display: block;
+                font-size: 1rem;
+                margin: 6px 0;
+                padding: 8px;
+            }
+
+            .tournament-title,
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .boards {
+                max-height: none;
+            }
+
+            .board {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 14px;
+            }
+
+            .team {
+                font-size: 1.3rem;
+            }
+
+            .score {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 575px) {
+            nav a {
+                font-size: 0.95rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 8px 14px;
+            }
+
+            .board {
+                padding: 12px;
+                border-radius: 16px;
+            }
+
+            .score {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo-container">
+            <div onclick="window.location.href='/';" style="text-decoration: none;">
+                <img src="/media/media_files/roriri_logo.png" alt="Roriri Volleyball Cup Logo">
+            </div>
+        </div>
+        <div>
+            <a href="/register"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="/schedule"><i class="fas fa-calendar-alt"></i> Fixtures</a>
+            <a href="/scores"><i class="fas fa-trophy"></i> Scores</a>
+            <a href="/gallery"><i class="fas fa-images"></i> Gallery</a>
+        </div>
+    </nav>
+
+    <div class="shell">
+        <div class="stack stadium" id="layoutRoot">
+            <h1>🏐 Live Volleyball Scores</h1>
+
+            <div class="controls">
+                <button class="btn" id="toggle-mode">Switch to List Mode</button>
+            </div>
+
+            <div class="boards" id="scoreboard">
+                <p class="no-match">Loading live scores...</p>
+            </div>
+
+            <!-- Sounds -->
+            <audio id="buzzer-sound" src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg"></audio>
+        </div>
+    </div>
+
+    <script>
+        // ---------- State ----------
+        let stadiumMode = true;      // true = stadium (first match big), false = list (all)
+        const lastScores = new Map(); // matchId -> "s1-s2"
+        const $scoreboard = $("#scoreboard");
+        const root = document.getElementById("layoutRoot");
+
+        // ---------- Helpers ----------
+        function wsURL() {
+            const proto = (location.protocol === "https:") ? "wss://" : "ws://";
+            return proto + window.location.host + "/ws/scores/";
+        }
+
+        function renderBoards(matches) {
+            if (!matches || !matches.length) {
+                $scoreboard.html("<p class='no-match'>No live matches right now</p>");
+                return;
+            }
+
+            // Sort: live -> scheduled -> finished (optional)
+            matches = [...matches].sort((a, b) => {
+                const rank = s => (s === "live" ? 0 : s === "upcoming" ? 1 : 2);
+                return rank((a.status || "").toLowerCase()) - rank((b.status || "").toLowerCase());
+            });
+
+            let html = "";
+
+            if (stadiumMode) {
+                // Stadium: show just the first (best) match large
+                const m = matches[0];
+                html += boardHTML(m);
+            } else {
+                // List: show all matches stacked
+                for (const m of matches) html += boardHTML(m);
+            }
+
+            $scoreboard.html(html);
+
+            // flash + sounds on score changes
+            (stadiumMode ? [matches[0]] : matches).forEach(m => {
+                const key = String(m.id);
+                const now = `${m.score1}-${m.score2}`;
+                const prev = lastScores.get(key);
+                if (prev && prev !== now) {
+                    const el = document.querySelector(`.score[data-id="${key}"]`);
+                    if (el) {
+                        el.classList.remove("flash");
+                        // force reflow to restart animation
+                        void el.offsetWidth;
+                        el.classList.add("flash");
+                    }
+                    // play sounds
+                    document.getElementById("buzzer-sound")?.play().catch(() => { });
+                }
+                lastScores.set(key, now);
+            });
+        }
+
+        function boardHTML(m) {
+            const status = (m.status || "").toLowerCase(); // live | finished | upcoming
+            const t1 = m.team1 || "TBD";
+            const t2 = m.team2 || "TBD";
+            return `
+        <div class="board ${status}">
+          <div class="team">${escapeHTML(t1)}</div>
+          <div class="score" data-id="${m.id}">${Number(m.score1)} - ${Number(m.score2)}</div>
+          <div class="team">${escapeHTML(t2)}</div>
+          <div class="info">${(m.status || "").toUpperCase()}</div>
+        </div>
+      `;
+        }
+
+        function escapeHTML(x) {
+            return String(x).replace(/[&<>"']/g, s => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]));
+        }
+
+        // ---------- Data Sources ----------
+        // Initial load via AJAX so UI fills even before first WS tick
+        function initialFetch() {
+            $.get("{% url 'live_scores_api' %}", function (data) {
+                renderBoards(data && data.matches ? data.matches : []);
+            }).fail(() => {
+                $scoreboard.html("<p class='no-match'>Could not load scores.</p>");
+            });
+        }
+
+        // Live updates via WebSocket + fallback to polling if needed
+        let socket;
+        function startWS() {
+            try {
+                socket = new WebSocket(wsURL());
+
+                socket.onopen = () => { /* connected */ };
+
+                socket.onmessage = (e) => {
+                    try {
+                        const payload = JSON.parse(e.data);
+                        renderBoards(payload && payload.matches ? payload.matches : []);
+                    } catch (_) { /* ignore parse errors */ }
+                };
+
+                socket.onclose = () => {
+                    // Fallback to polling on close
+                    startPolling();
+                };
+
+                socket.onerror = () => {
+                    try { socket.close(); } catch (_) { }
+                };
+            } catch (_) {
+                startPolling();
+            }
+        }
+
+        let pollTimer = null;
+        function startPolling() {
+            if (pollTimer) return; // already polling
+            const loadScores = () => {
+                $.get("{% url 'live_scores_api' %}", function (data) {
+                    renderBoards(data && data.matches ? data.matches : []);
+                });
+            };
+            loadScores();
+            pollTimer = setInterval(loadScores, 3000);
+        }
+
+        // ---------- UI events ----------
+        $("#toggle-mode").on("click", () => {
+            stadiumMode = !stadiumMode;
+            $("#toggle-mode").text(stadiumMode ? "Switch to List Mode" : "Switch to Stadium Mode");
+            root.classList.toggle("stadium", stadiumMode);
+
+            // re-render with current cache (no cache? just wait next update)
+            // We’ll request one fresh snapshot:
+            $.get("{% url 'live_scores_api' %}", function (data) {
+                renderBoards(data && data.matches ? data.matches : []);
+            });
+        });
+
+        // ---------- Boot ----------
+        root.classList.add("stadium");   // start in stadium mode
+        initialFetch();
+        startWS();
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

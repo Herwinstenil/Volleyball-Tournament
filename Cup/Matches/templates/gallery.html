@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Volleyball Cup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 300% 300%;
+            animation: gradientShift 20s ease infinite;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            25% {
+                background-position: 100% 0%;
+            }
+
+            50% {
+                background-position: 50% 100%;
+            }
+
+            75% {
+                background-position: 0% 100%;
+            }
+        }
+
+        /* Navbar - UNCHANGED */
+
+        nav {
+            background: rgba(0, 74, 173, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 74, 173, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav a {
+            color: white;
+            margin: 0 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            border-radius: 25px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover::before {
+            opacity: 1;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px) scale(1.05);
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .logo-container {
+            position: relative;
+            border-radius: 15px;
+            padding: 8px;
+        }
+
+        .logo-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container img {
+            height: 40px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        /* Enhanced Container */
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        /* Floating Background Elements */
+        .bg-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .bg-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+        }
+
+        .bg-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 5s;
+        }
+
+        .bg-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            width: 40px;
+            height: 40px;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+
+            33% {
+                transform: translateY(-30px) rotate(120deg);
+                opacity: 0.7;
+            }
+
+            66% {
+                transform: translateY(15px) rotate(240deg);
+                opacity: 0.5;
+            }
+        }
+
+        /* Enhanced Title */
+        .container h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #fff, #f8f9fa, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 50px;
+            position: relative;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes titleGlow {
+            0% {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+                transform: scale(1);
+            }
+
+            100% {
+                text-shadow: 0 0 40px rgba(255, 255, 255, 0.8), 0 0 60px rgba(255, 255, 255, 0.4);
+                transform: scale(1.02);
+            }
+        }
+
+        .container h2::after {
+            content: '🏐';
+            position: absolute;
+            right: -60px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(-50%);
+            }
+
+            40% {
+                transform: translateY(-70%);
+            }
+
+            60% {
+                transform: translateY(-65%);
+            }
+        }
+
+        /* Enhanced Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .gallery-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .gallery-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .gallery-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .gallery-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .gallery-item:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .gallery-item:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-15px) scale(1.05) rotateX(5deg);
+            box-shadow:
+                0 25px 50px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.8s ease;
+            z-index: 2;
+        }
+
+        .gallery-item:hover::before {
+            left: 100%;
+        }
+
+        .gallery img,
+        .gallery video {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .gallery-item:hover img,
+        .gallery-item:hover video {
+            transform: scale(1.1);
+            filter: brightness(1.2) contrast(1.1) saturate(1.2);
+        }
+
+        /* Overlay Effect */
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg,
+                    rgba(102, 126, 234, 0.8),
+                    rgba(118, 75, 162, 0.8));
+            opacity: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            text-align: center;
+            color: white;
+            transform: translateY(20px);
+            transition: all 0.3s ease 0.1s;
+        }
+
+        .gallery-item:hover .overlay-content {
+            transform: translateY(0);
+        }
+
+        .overlay-content i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            animation: pulse 2s ease infinite;
+        }
+
+        .overlay-content p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* No Items Message */
+        .no-items {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 1.5rem;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .no-items i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            opacity: 0.7;
+        }
+
+        /* Modal for Full View */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(5px);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            max-width: 90%;
+            max-height: 90%;
+            animation: modalZoomIn 0.3s ease forwards;
+        }
+
+        @keyframes modalZoomIn {
+            to {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .modal img,
+        .modal video {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10000;
+        }
+
+        .close-modal:hover {
+            color: #ff6b6b;
+            transform: scale(1.2) rotate(90deg);
+        }
+
+        h3 {
+            margin-top: 40px;
+            color: #004aad;
+            font-size: 1.8rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            animation: titleSlide 1s ease forwards;
+        }
+
+        @keyframes titleSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+            transition: all 0.6s ease;
+            transform: translateX(-50%);
+        }
+
+        h3:hover::after {
+            width: 100%;
+        }
+
+        /* --- Shake Animation --- */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Footer */
+
+        footer {
+            background: linear-gradient(135deg, rgba(0, 74, 173, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 20px 10px;
+            font-size: 1rem;
+            margin-top: 40px;
+            animation: slideInFromBottom 1s ease-in;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #feca57, transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        footer p {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        footer p:hover {
+            color: #ff6b6b;
+            transform: scale(1.05);
+        }
+
+        .contact-info {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: fadeInLeft 1s ease-out both;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #feca57, transparent);
+            margin: 30px auto;
+            max-width: 600px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #feca57;
+            }
+
+            to {
+                box-shadow: 0 0 20px #feca57;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1199px) {
+            nav {
+                padding: 10px 15px;
+            }
+
+            nav a {
+                font-size: 1.1rem;
+                margin: 0 6px;
+            }
+
+            .container h2 {
+                font-size: 3rem;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+            }
+
+            .gallery img,
+            .gallery video {
+                height: 220px;
+            }
+
+            .map-container {
+                flex: 1 1 350px;
+                min-height: 320px;
+            }
+
+            .contact-info {
+                margin-left: 20px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav div:last-child {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 6px 10px;
+            }
+
+            .container h2 {
+                font-size: 2.5rem;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 20px;
+            }
+
+            .gallery img,
+            .gallery video {
+                height: 200px;
+            }
+
+            .contact-info {
+                margin-left: 0;
+                text-align: center;
+            }
+
+            footer>div {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .map-container {
+                width: 100%;
+                min-height: 300px;
+                margin-bottom: 20px;
+            }
+
+            .contact-info {
+                margin-left: 0;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 767px) {
+            nav {
+                padding: 10px;
+                text-align: center;
+            }
+
+            nav div:last-child {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                display: block;
+                font-size: 1rem;
+                padding: 8px;
+            }
+
+            .container h2 {
+                font-size: 2rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .gallery img,
+            .gallery video {
+                height: 220px;
+            }
+
+            footer {
+                font-size: 0.9rem;
+            }
+
+            .map-container {
+                width: 100%;
+                min-height: 250px;
+                margin-bottom: 20px;
+            }
+
+            .contact-info h3 {
+                font-size: 1.5rem;
+            }
+
+            .contact-info p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 575px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                font-size: 0.95rem;
+                margin: 5px 0;
+            }
+
+            .container h2 {
+                font-size: 1.8rem;
+            }
+
+            .gallery img,
+            .gallery video {
+                height: 200px;
+            }
+
+            footer {
+                font-size: 0.85rem;
+                text-align: center;
+            }
+
+            .map-container {
+                width: 100%;
+                min-height: 220px;
+            }
+
+            .contact-info {
+                padding: 0 10px;
+                font-size: 0.9rem;
+            }
+
+            .contact-info h3 {
+                font-size: 1.3rem;
+            }
+
+            .contact-info p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background floating elements -->
+    <div class="bg-element"></div>
+    <div class="bg-element"></div>
+    <div class="bg-element"></div>
+
+    <nav>
+        <div class="logo-container">
+            <div onclick="window.location.href='/';" style="text-decoration: none;">
+                <img src="/media/media_files/roriri_logo.png" alt="Roriri Volleyball Cup Logo">
+            </div>
+        </div>
+        <div>
+            <a href="/register"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="/schedule"><i class="fas fa-calendar-alt"></i> Fixtures</a>
+            <a href="/scores"><i class="fas fa-trophy"></i> Scores</a>
+            <a href="/gallery"><i class="fas fa-images"></i> Gallery</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Gallery</h2>
+        <div class="gallery">
+            <!-- Sample gallery items for demonstration -->
+            <!-- <div class="gallery-item">  
+                <img src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Volleyball Action">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-search-plus"></i>
+                        <p>View Full Size</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Team Celebration">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-search-plus"></i>
+                        <p>View Full Size</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Volleyball Court">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-search-plus"></i>
+                        <p>View Full Size</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    alt="Players in Action">
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-search-plus"></i>
+                        <p>View Full Size</p>
+                    </div>
+                </div>
+            </div>-->
+
+            <!-- For when no items are available -->
+            <div class="no-items">
+                <i class="fas fa-images"></i>
+                <p>No gallery items yet.</p>
+            </div>
+
+            <!-- Your Django template code would go here: -->
+            {% for item in items %}
+            <div class="gallery-item">
+                {% if item.image %}
+                <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                {% elif item.video %}
+                <video controls>
+                    <source src="{{ item.video.url }}" type="video/mp4">
+                </video>
+                {% endif %}
+                <div class="gallery-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-search-plus"></i>
+                        <p>View Full Size</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-items">
+                <i class="fas fa-images"></i>
+                <p>No gallery items yet.</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <!-- Modal for full-size view -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="">
+            <video id="modalVideo" controls style="display: none;">
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <footer>
+        <div
+            style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+            <div class="map-container" style="flex: 1 1 300px; min-height: 350px;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11487.327837261768!2d77.57889418196686!3d8.522276781053657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04692c8b82209f%3A0xa00060055fec4e1!2sRORIRI%20SOFTWARE%20SOLUTIONS%20PVT.LTD.!5e0!3m2!1sen!2sin!4v1735800795252!5m2!1sen!2sin"
+                    width="100%" height="100%" style="border:0; min-height: 350px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" title="RORIRI SOFTWARE SOLUTIONS PVT. LTD. Location">
+                </iframe>
+            </div>
+            <div class="contact-info" style="flex: 1 1 300px; text-align: left; margin-left: 40px;">
+                <h3 style="margin-bottom: 20px; color: #feca57;"><i class="fas fa-phone-alt"
+                        style="transform: rotate(90deg); display:inline-block;"></i> Contact Us</h3>
+                <p style="margin-bottom: 10px;"><strong><i class="fas fa-user"></i> Coordinator:</strong> SAM</p>
+                <p style="margin-bottom: 10px;"><strong><i class="fas fa-mobile-alt"></i> Phone:</strong> +91 9715665066
+                </p>
+                <p style="margin-bottom: 10px;"><strong><i class="fas fa-envelope"></i> Email:</strong>
+                    sports@company.com</p>
+                <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> RORIRI IT PARK, NALLANATHAPURAM,
+                    Kalakkad, Keela Karuvelankulam, Tamil Nadu 627502</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <hr>
+            <p>&copy; 2025 Roriri Volleyball Cup | All Rights Reserved | Made with ❤️ for Volleyball</p>
+        </div>
+    </footer>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const modalVideo = document.getElementById('modalVideo');
+        const closeModal = document.querySelector('.close-modal');
+
+        // Open modal when gallery item is clicked
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function () {
+                const img = this.querySelector('img');
+                const video = this.querySelector('video');
+
+                if (img) {
+                    modalImg.src = img.src;
+                    modalImg.style.display = 'block';
+                    modalVideo.style.display = 'none';
+                } else if (video) {
+                    modalVideo.querySelector('source').src = video.querySelector('source').src;
+                    modalVideo.load();
+                    modalVideo.style.display = 'block';
+                    modalImg.style.display = 'none';
+                }
+
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Close modal
+        closeModal.addEventListener('click', function () {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            modalVideo.pause();
+        });
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                modalVideo.pause();
+            }
+        });
+
+        // Close modal with escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                modalVideo.pause();
+            }
+        });
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add intersection observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+
+        // Observe gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            observer.observe(item);
+        });
+
+        // Add particle system
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.style.position = 'absolute';
+            particle.style.width = Math.random() * 6 + 2 + 'px';
+            particle.style.height = particle.style.width;
+            particle.style.background = 'rgba(255, 255, 255, 0.4)';
+            particle.style.borderRadius = '50%';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.top = '100%';
+            particle.style.pointerEvents = 'none';
+            particle.style.animation = 'floatUp 8s linear forwards';
+
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.parentNode.removeChild(particle);
+                }
+            }, 8000);
+        }
+
+        // Add CSS for particle animation
+        const particleStyle = document.createElement('style');
+        particleStyle.textContent = `
+            @keyframes floatUp {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 0;
+                }
+                10% {
+                    opacity: 1;
+                }
+                90% {
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(particleStyle);
+
+        // Create particles periodically
+        setInterval(createParticle, 2000);
+
+        // Add loading animation for images
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('load', function () {
+                this.style.opacity = '1';
+                this.style.transform = 'scale(1)';
+            });
+
+            // Set initial state
+            img.style.opacity = '0';
+            img.style.transform = 'scale(0.9)';
+            img.style.transition = 'all 0.5s ease';
+        });
+
+        // Add ripple effect to gallery items
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function (e) {
+                const ripple = document.createElement('div');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+
+                ripple.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${x}px;
+                    top: ${y}px;
+                    background: rgba(255, 255, 255, 0.3);
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: rippleEffect 0.6s linear;
+                    pointer-events: none;
+                    z-index: 10;
+                `;
+
+                this.style.position = 'relative';
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    if (ripple.parentNode) {
+                        ripple.remove();
+                    }
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple effect
+        const rippleStyle = document.createElement('style');
+        rippleStyle.textContent = `
+            @keyframes rippleEffect {
+                to {
+                    transform: scale(2);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(rippleStyle);
+
+        // Add parallax effect to background elements
+        window.addEventListener('scroll', function () {
+            const scrolled = window.pageYOffset;
+            const bgElements = document.querySelectorAll('.bg-element');
+
+            bgElements.forEach((element, index) => {
+                const speed = 0.5 + (index * 0.2);
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Initialize all animations when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add fade-in animation to container
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(30px)';
+            container.style.transition = 'all 0.8s ease';
+
+            setTimeout(() => {
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 300);
+
+            // Start particle creation after page load
+            setTimeout(() => {
+                setInterval(createParticle, 2000);
+            }, 1000);
+        });
+    </script>
+
+</body>
+
+</html>

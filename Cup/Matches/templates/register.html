@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Team - Volleyball Cup</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* --- Body & Background --- */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(120deg, #fceabb, #f8b500);
+            background-size: 200% 200%;
+            animation: bgMove 12s infinite alternate ease-in-out;
+        }
+
+        @keyframes bgMove {
+            0% {
+                background-position: left top;
+            }
+
+            100% {
+                background-position: right bottom;
+            }
+        }
+
+        /* --- Navbar (UNCHANGED) --- */
+
+        nav {
+            background: rgba(0, 74, 173, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 74, 173, 0.3);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav a {
+            color: white;
+            margin: 0 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            padding: 6px 12px;
+            border-radius: 20px;
+        }
+
+        nav a::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            border-radius: 25px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover::before {
+            opacity: 1;
+        }
+
+        nav a:hover {
+            transform: translateY(-2px) scale(1.05);
+            color: white;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .logo-container {
+            position: relative;
+            border-radius: 15px;
+            padding: 8px;
+        }
+
+        .logo-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-container img {
+            height: 40px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        /* --- Enhanced Header --- */
+        .header {
+            text-align: center;
+            padding: 60px 20px 30px 20px;
+            color: #004aad;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: headerShimmer 4s infinite;
+        }
+
+        @keyframes headerShimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .header h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #004aad, #0074e4, #48dbfb);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGradient 3s ease-in-out infinite alternate, bounceIn 1.2s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes textGradient {
+            0% {
+                background-position: left;
+            }
+
+            100% {
+                background-position: right;
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3) translateY(-50px);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+
+            70% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #333;
+            animation: fadeInUp 1s ease forwards 0.5s;
+            opacity: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- Enhanced Form Container --- */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: slideInScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+            background-size: 300% 100%;
+            animation: gradientMove 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientMove {
+
+            0%,
+            100% {
+                background-position: left;
+            }
+
+            50% {
+                background-position: right;
+            }
+        }
+
+        @keyframes slideInScale {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* --- Enhanced Form Labels --- */
+        label {
+            font-weight: bold;
+            margin-top: 20px;
+            display: block;
+            color: #004aad;
+            font-size: 1.1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            animation: slideInRight 0.6s ease forwards;
+        }
+
+        label::before {
+            content: "✨";
+            margin-right: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        label:hover::before {
+            opacity: 1;
+            animation: sparkle 0.6s ease;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* --- Enhanced Form Inputs --- */
+        input[type="text"],
+        input[type="file"],
+        input[type="email"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 8px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: linear-gradient(135deg, #ffffff, #f8f9fa);
+            position: relative;
+            animation: inputSlide 0.6s ease forwards;
+            box-sizing: border-box;
+        }
+
+        @keyframes inputSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        input[type="text"]:focus,
+        input[type="file"]:focus,
+        input[type="email"]:focus {
+            border-color: #004aad;
+            box-shadow: 0 0 20px rgba(0, 74, 173, 0.4);
+            transform: scale(1.02) translateY(-2px);
+            background: linear-gradient(135deg, #ffffff, #f0f7ff);
+            outline: none;
+        }
+
+        /* --- Enhanced Player Boxes --- */
+        .player-box {
+            padding: 25px;
+            border: 3px solid #e8f4fd;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff, #f8fcff);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            animation: playerBoxSlide 0.8s ease forwards;
+            overflow: hidden;
+        }
+
+        .player-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 74, 173, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .player-box:hover::before {
+            left: 100%;
+        }
+
+        @keyframes playerBoxSlide {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px) scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        .player-box:hover {
+            background: linear-gradient(135deg, #fff8e1, #e3f2fd);
+            border-color: #004aad;
+            transform: scale(1.03) translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 74, 173, 0.2);
+        }
+
+        .player-box h4 {
+            position: absolute;
+            top: -15px;
+            left: 15px;
+            background: linear-gradient(45deg, #004aad, #0074e4);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 74, 173, 0.3);
+            animation: playerTitleBounce 0.6s ease forwards;
+        }
+
+        @keyframes playerTitleBounce {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.8);
+            }
+
+            60% {
+                transform: translateY(0) scale(1.1);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* --- Enhanced Phone Wrapper --- */
+        .phone-wrapper {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            animation: phoneSlide 0.8s ease forwards;
+        }
+
+        @keyframes phoneSlide {
+            0% {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .phone-prefix {
+            padding: 15px;
+            background: linear-gradient(135deg, #004aad, #0074e4);
+            color: white;
+            border: 2px solid #004aad;
+            border-radius: 12px 0 0 12px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .phone-input {
+            border-radius: 0 12px 12px 0 !important;
+            border-left: none !important;
+            padding: 15px !important;
+            width: 100%;
+        }
+
+        .phone-wrapper:hover .phone-prefix {
+            background: linear-gradient(135deg, #0074e4, #48dbfb);
+            transform: scale(1.05);
+        }
+
+        /* --- Enhanced Button --- */
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(45deg, #004aad, #0074e4, #48dbfb);
+            background-size: 300% 100%;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            animation: buttonSlide 1s ease forwards;
+        }
+
+        @keyframes buttonSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:hover {
+            background-position: right;
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 74, 173, 0.4);
+        }
+
+        button:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        /* --- Enhanced Section Title --- */
+        h3 {
+            margin-top: 40px;
+            color: #004aad;
+            font-size: 1.8rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            animation: titleSlide 1s ease forwards;
+        }
+
+        @keyframes titleSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb);
+            transition: all 0.6s ease;
+            transform: translateX(-50%);
+        }
+
+        h3:hover::after {
+            width: 100%;
+        }
+
+        /* --- Shake Animation --- */
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* --- Floating particles --- */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 74, 173, 0.3);
+            border-radius: 50%;
+            animation: float 6s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- Footer --- */
+
+        footer {
+            background: linear-gradient(135deg, rgba(0, 74, 173, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 20px 10px;
+            font-size: 1rem;
+            margin-top: 40px;
+            animation: slideInFromBottom 1s ease-in;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #feca57, transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        footer p {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        footer p:hover {
+            color: #ff6b6b;
+            transform: scale(1.05);
+        }
+
+        .contact-info {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: fadeInLeft 1s ease-out both;
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #feca57, transparent);
+            margin: 30px auto;
+            max-width: 600px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 5px #feca57;
+            }
+
+            to {
+                box-shadow: 0 0 20px #feca57;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+        }
+
+        /*  Responsive Design  */
+        @media (min-width: 1200px) {
+            .header h2 {
+                font-size: 3rem;
+            }
+
+            .header p {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 1199px) and (min-width: 992px) {
+            .header h2 {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                max-width: 700px;
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 991px) and (min-width: 768px) {
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav div:last-child {
+                margin-top: 10px;
+            }
+
+            nav a {
+                font-size: 1rem;
+                margin: 5px;
+            }
+
+            .header h2 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                max-width: 90%;
+                padding: 30px;
+            }
+
+            footer div {
+                flex-direction: column;
+                text-align: center;
+                margin: auto;
+            }
+
+            .contact-info {
+                margin-left: 0;
+                text-align: center;
+            }
+
+            .map-container {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 767px) and (min-width: 576px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav div:last-child {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                margin-top: 10px;
+            }
+
+            nav a {
+                font-size: 1rem;
+            }
+
+            .header {
+                padding: 40px 15px 20px;
+            }
+
+            .header h2 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .container {
+                max-width: 95%;
+                padding: 20px;
+            }
+
+            .player-box {
+                padding: 15px;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            footer {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav div:last-child {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                margin-top: 8px;
+            }
+
+            nav a {
+                font-size: 0.9rem;
+            }
+
+            .header {
+                padding: 30px 10px;
+            }
+
+            .header h2 {
+                font-size: 1.8rem;
+            }
+
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            .container {
+                max-width: 100%;
+                margin: 20px auto;
+                padding: 15px;
+            }
+
+            label {
+                font-size: 1rem;
+            }
+
+            input[type="text"],
+            input[type="email"],
+            input[type="file"] {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .phone-prefix {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 14px;
+                font-size: 16px;
+            }
+
+            h3 {
+                font-size: 1.3rem;
+            }
+
+            footer div {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            iframe {
+                min-height: 250px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo-container">
+            <div onclick="window.location.href='/';" style="text-decoration: none;">
+                <img src="/media/media_files/roriri_logo.png" alt="Roriri Volleyball Cup Logo">
+            </div>
+        </div>
+        <div>
+            <a href="/register"><i class="fas fa-user-plus"></i> Register</a>
+            <a href="/schedule"><i class="fas fa-calendar-alt"></i> Fixtures</a>
+            <a href="/scores"><i class="fas fa-trophy"></i> Scores</a>
+            <a href="/gallery"><i class="fas fa-images"></i> Gallery</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <div class="header">
+        <h2>Team Registration</h2>
+        <p>Join the Roriri Volleyball Cup 2025 and showcase your skills!</p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Team Info -->
+            <label for="{{ reg_form.team_name.id_for_label }}">Team Name *</label>
+            {{ reg_form.team_name }}
+
+            <label for="{{ reg_form.captain_name.id_for_label }}">Captain Name *</label>
+            {{ reg_form.captain_name }}
+
+            <label for="{{ reg_form.email.id_for_label }}">Email *</label>
+            {{ reg_form.email }}
+
+            <label for="{{ reg_form.phone.id_for_label }}">Phone *</label>
+            <div class="phone-wrapper">
+                <span class="phone-prefix">+91</span>
+                {{ reg_form.phone }}
+            </div>
+
+            <!-- Players Formset -->
+            <h3>Players Registration</h3>
+            {{ player_formset.management_form }}
+            {% for form in player_formset %}
+            <div class="player-box">
+                <h4>Player {{ forloop.counter }}</h4>
+                <label for="{{ form.name.id_for_label }}">Player Name</label>
+                {{ form.name }}
+
+                <label for="{{ form.id_card.id_for_label }}">College ID</label>
+                {{ form.id_card }}
+            </div>
+            {% endfor %}
+
+            <button type="submit">Submit Registration</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div
+            style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+            <div class="map-container" style="flex: 1 1 300px; min-height: 350px;">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11487.327837261768!2d77.57889418196686!3d8.522276781053657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04692c8b82209f%3A0xa00060055fec4e1!2sRORIRI%20SOFTWARE%20SOLUTIONS%20PVT.LTD.!5e0!3m2!1sen!2sin!4v1735800795252!5m2!1sen!2sin"
+                    width="100%" height="100%" style="border:0; min-height: 350px;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" title="RORIRI SOFTWARE SOLUTIONS PVT. LTD. Location">
+                </iframe>
+            </div>
+            <div class="contact-info" style="flex: 1 1 300px; text-align: left; margin-left: 40px;">
+                <h3 style="margin-bottom: 20px; color: #feca57;"><i class="fas fa-phone-alt"
+                        style="transform: rotate(90deg); display:inline-block;"></i> Contact Us</h3>
+                <p style="margin-bottom: 10px;"><strong><i class="fas fa-user"></i> Coordinator:</strong> SAM</p>
+                <p style="margin-bottom: 10px;"><strong><i class="fas fa-mobile-alt"></i> Phone:</strong> +91 9715665066
+                </p>
+                <p style="margin-bottom: 10px;"><strong><i class="fas fa-envelope"></i> Email:</strong>
+                    sports@company.com</p>
+                <p><strong><i class="fas fa-map-marker-alt"></i> Address:</strong> RORIRI IT PARK, NALLANATHAPURAM,
+                    Kalakkad, Keela Karuvelankulam, Tamil Nadu 627502 </p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <hr>
+            <p>&copy; 2025 Roriri Volleyball Cup | All Rights Reserved | Made with ❤️ for Volleyball</p>
+        </div>
+    </footer>
+
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20;
+
+            for (let i = 0; i < particleCount; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    particle.style.animationDelay = Math.random() * 2 + 's';
+                    particlesContainer.appendChild(particle);
+
+                    // Remove particle after animation
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 8000);
+                }, i * 500);
+            }
+        }
+
+        // Start particle animation
+        createParticles();
+        setInterval(createParticles, 10000);
+
+        // Add staggered animation to form elements
+        document.addEventListener('DOMContentLoaded', function () {
+            const elements = document.querySelectorAll('label, input, .player-box');
+            elements.forEach((element, index) => {
+                element.style.animationDelay = (index * 0.1) + 's';
+            });
+
+            // Add typing effect to header
+            const headerText = document.querySelector('.header h2');
+            const originalText = headerText.textContent;
+            headerText.textContent = '';
+
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    headerText.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+
+            setTimeout(typeWriter, 1000);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.player-box').forEach(box => {
+            box.addEventListener('mouseenter', function () {
+                this.style.transform = 'scale(1.03) translateY(-5px) rotateY(2deg)';
+            });
+
+            box.addEventListener('mouseleave', function () {
+                this.style.transform = 'scale(1) translateY(0) rotateY(0deg)';
+            });
+        });
+
+        // Add form validation with animations
+        document.querySelector('form').addEventListener('submit', function (e) {
+            const requiredFields = this.querySelectorAll('input[required]');
+            let isValid = true;
+
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.animation = 'shake 0.5s ease-in-out';
+                    field.style.borderColor = '#ff6b6b';
+
+                    setTimeout(() => {
+                        field.style.animation = '';
+                        field.style.borderColor = '';
+                    }, 500);
+                }
+            });
+
+            if (!isValid) {
+                e.preventDefault();
+            }
+        });
+
+        // Add input focus effects
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', function () {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+
+            input.addEventListener('blur', function () {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
