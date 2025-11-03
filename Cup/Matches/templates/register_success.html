@@ -337,152 +337,6 @@
             }
         }
 
-        /* Responsive Design */
-        @media (min-width: 1200px) {
-            .success-message {
-                padding: 70px 60px;
-            }
-
-            .success-message h1 {
-                font-size: 3.2rem;
-            }
-
-            .success-message p {
-                font-size: 1.4rem;
-            }
-
-            .success-icon {
-                font-size: 4.2rem;
-            }
-
-            .success-message a {
-                font-size: 1.1rem;
-                padding: 15px 35px;
-            }
-        }
-
-        @media (max-width: 1199px) and (min-width: 992px) {
-            .success-message {
-                padding: 50px 40px;
-            }
-
-            .success-message h1 {
-                font-size: 2.8rem;
-            }
-
-            .success-message p {
-                font-size: 1.25rem;
-            }
-
-            .success-icon {
-                font-size: 3.5rem;
-            }
-
-            .success-message a {
-                font-size: 1rem;
-                padding: 12px 30px;
-            }
-        }
-
-        @media (max-width: 991px) and (min-width: 768px) {
-            .container {
-                padding: 20px;
-                height: auto;
-            }
-
-            .success-message {
-                padding: 40px 30px;
-                width: 90%;
-            }
-
-            .success-icon {
-                font-size: 3.2rem;
-            }
-
-            .success-message h1 {
-                font-size: 2.2rem;
-            }
-
-            .success-message p {
-                font-size: 1.1rem;
-            }
-
-            .success-message a {
-                font-size: 0.95rem;
-                padding: 12px 25px;
-            }
-        }
-
-        @media (max-width: 767px) and (min-width: 576px) {
-            body {
-                overflow-y: auto;
-            }
-
-            .container {
-                height: auto;
-                padding: 15px;
-            }
-
-            .success-message {
-                width: 100%;
-                padding: 30px 20px;
-                border-radius: 18px;
-            }
-
-            .success-icon {
-                font-size: 2.8rem;
-            }
-
-            .success-message h1 {
-                font-size: 1.8rem;
-            }
-
-            .success-message p {
-                font-size: 1rem;
-            }
-
-            .success-message a {
-                font-size: 0.9rem;
-                padding: 10px 22px;
-            }
-        }
-
-        @media (max-width: 575px) {
-            body {
-                overflow-y: auto;
-                padding: 10px;
-            }
-
-            .container {
-                height: auto;
-                padding: 10px;
-            }
-
-            .success-message {
-                width: 100%;
-                padding: 25px 15px;
-                border-radius: 15px;
-            }
-
-            .success-icon {
-                font-size: 2.4rem;
-                margin-bottom: 15px;
-            }
-
-            .success-message h1 {
-                font-size: 1.5rem;
-            }
-
-            .success-message p {
-                font-size: 0.9rem;
-                margin-bottom: 20px;
-            }
-
-            .success-message a {
-                font-size: 0.85rem;
-                padding: 8px 18px;
-            }
-        }
     </style>
 </head>
 
@@ -610,6 +464,60 @@
         document.head.appendChild(style);
     </script>
 
-</body>
+    /* Responsive Design */
+    @media (max-width: 320px) {
+        .container {
+            width: 95%;
+            padding: 10px;
+        }
+        .success-message {
+            padding: 30px 20px;
+        }
+        .success-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        .success-message h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        .success-message p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .success-message a {
+            padding: 12px 25px;
+            font-size: 1rem;
+        }
+        .pulse-bg {
+            width: 200px;
+            height: 200px;
+        }
+    }
 
-</html>
+    @media (max-width: 375px) {
+        .container {
+            width: 95%;
+            padding: 15px;
+        }
+        .success-message {
+            padding: 40px 25px;
+        }
+        .success-icon {
+            font-size: 3.5rem;
+            margin-bottom: 18px;
+        }
+        .success-message h1 {
+            font-size: 2.3rem;
+            margin-bottom: 18px;
+        }
+        .success-message p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.55;
+        }
+        .success-message a {
+            padding: 13px 28px;
+            font-size: 1.05rem;
+        }
