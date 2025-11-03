@@ -450,166 +450,170 @@
       width: 100%;
     }
 
-      /* Footer Styles */
-footer {
-  background: linear-gradient(135deg, rgba(26, 42, 108, 0.95), rgba(178, 31, 31, 0.95));
-  backdrop-filter: blur(20px);
-  color: white;
-  padding: 20px 10px;
-  font-size: 1rem;
-  margin-top: 40px;
-  animation: slideInFromBottom 1s ease-in;
-  position: relative;
-  overflow: hidden;
-}
+    /* Footer Styles */
+    footer {
+      background: linear-gradient(135deg, rgba(26, 42, 108, 0.95), rgba(178, 31, 31, 0.95));
+      backdrop-filter: blur(20px);
+      color: white;
+      padding: 20px 10px;
+      font-size: 1rem;
+      margin-top: 40px;
+      animation: slideInFromBottom 1s ease-in;
+      position: relative;
+      overflow: hidden;
+    }
 
-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #feca57, transparent);
-  animation: shimmer 3s infinite;
-}
+    footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #feca57, transparent);
+      animation: shimmer 3s infinite;
+    }
 
-@keyframes shimmer {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
+    @keyframes shimmer {
+      0% {
+        left: -100%;
+      }
 
-footer p {
-  color: white;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  position: relative;
-}
+      100% {
+        left: 100%;
+      }
+    }
 
-footer p:hover {
-  color: #feca57;
-  transform: scale(1.05);
-}
+    footer p {
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+    }
 
-/* Contact Info Section */
-.contact-info {
-  flex: 1 1;
-  text-align: left;
-  margin-left: 40px;
-  padding: 20px; 
-  border-radius: 12px; 
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(254, 202, 87, 0.3);
-  animation: fadeInUp 1s ease-out 0.3s both;
-  min-height: 280px; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+    footer p:hover {
+      color: #feca57;
+      transform: scale(1.05);
+    }
 
-.contact-info h3 {
-  margin-bottom: 20px;
-  color: #feca57;
-  font-size: 1.3rem; 
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding-bottom: 8px; 
-}
+    /* Contact Info Section */
+    .contact-info {
+      flex: 1 1;
+      text-align: left;
+      margin-left: 40px;
+      padding: 20px;
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(254, 202, 87, 0.3);
+      animation: fadeInUp 1s ease-out 0.3s both;
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-.contact-info h3 i {
-  transform: rotate(90deg);
-  margin-right: 12px;
-  font-size: 1.2rem; 
-}
+    .contact-info h3 {
+      margin-bottom: 20px;
+      color: #feca57;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding-bottom: 8px;
+    }
 
-.contact-info p {
-  margin-bottom: 12px; 
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem; 
-  padding: 8px 0; 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-}
+    .contact-info h3 i {
+      transform: rotate(90deg);
+      margin-right: 12px;
+      font-size: 1.2rem;
+    }
 
-.contact-info p:hover {
-  color: #feca57;
-  transform: translateX(8px); 
-}
+    .contact-info p {
+      margin-bottom: 12px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1rem;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
 
-.contact-info p:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
-}
+    .contact-info p:hover {
+      color: #feca57;
+      transform: translateX(8px);
+    }
 
-.contact-info strong {
-  color: #feca57;
-  font-weight: 600;
-  margin-right: 8px; 
-  font-size: 0.95rem;
-}
+    .contact-info p:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+    }
 
-/* Map Container */
-.map-container {
-  border-radius: 12px; 
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); 
-  animation: fadeInLeft 1s ease-out both;
-  flex: 1 1;
-  min-height: 280px; 
-  max-height: 280px; 
-}
+    .contact-info strong {
+      color: #feca57;
+      font-weight: 600;
+      margin-right: 8px;
+      font-size: 0.95rem;
+    }
 
-.map-container iframe {
-  border-radius: 12px;
-  min-height: 280px; 
-  height: 280px;
-  border: 2px solid #feca57; 
-}
+    /* Map Container */
+    .map-container {
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      animation: fadeInLeft 1s ease-out both;
+      flex: 1 1;
+      min-height: 280px;
+      max-height: 280px;
+    }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px); 
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    .map-container iframe {
+      border-radius: 12px;
+      min-height: 280px;
+      height: 280px;
+      border: 2px solid #feca57;
+    }
 
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px); 
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-hr {
-  border: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #feca57, transparent);
-  margin: 20px auto; 
-  max-width: 500px; 
-  animation: glow 2s ease-in-out infinite alternate;
-}
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-@keyframes glow {
-  from {
-    box-shadow: 0 0 5px #feca57;
-  }
-  to {
-    box-shadow: 0 0 20px #feca57; 
-  }
-}
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    hr {
+      border: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #feca57, transparent);
+      margin: 20px auto;
+      max-width: 500px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 5px #feca57;
+      }
+
+      to {
+        box-shadow: 0 0 20px #feca57;
+      }
+    }
 
     /* Custom scrollbar */
     ::-webkit-scrollbar {
@@ -713,7 +717,7 @@ hr {
         width: 92%;
       }
 
-       footer {
+      footer {
         font-size: 0.9rem;
       }
     }
@@ -731,7 +735,8 @@ hr {
       .hero-content {
         padding: 30px;
       }
-       footer {
+
+      footer {
         font-size: 1.0rem;
       }
     }
@@ -788,7 +793,7 @@ hr {
         padding: 30px;
       }
 
-      footer > div {
+      footer>div {
         flex-direction: column;
         gap: 20px;
       }
@@ -817,7 +822,7 @@ hr {
         padding: 35px;
       }
 
-      footer > div {
+      footer>div {
         gap: 25px;
       }
     }
@@ -891,7 +896,7 @@ hr {
         font-size: 1.3rem;
       }
 
-      footer > div {
+      footer>div {
         max-width: 1800px;
         gap: 50px;
       }
@@ -955,12 +960,12 @@ hr {
         <img src="/media/media_files/roriri_logo.png" alt="Roriri Volleyball Cup Logo">
       </div>
     </div>
-    
+
     <!-- Mobile Toggle Button -->
     <button class="mobile-toggle" id="mobileToggle">
       <i class="fas fa-bars"></i>
     </button>
-    
+
     <!-- Navigation Links -->
     <div class="nav-links" id="navLinks">
       <a href="/register"><i class="fas fa-user-plus"></i> Register</a>
@@ -990,7 +995,8 @@ hr {
   </div>
 
   <footer>
-    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+    <div
+      style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
       <div class="map-container" style="flex: 1 1 300px; min-height: 350px;">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11487.327837261768!2d77.57889418196686!3d8.522276781053657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b04692c8b82209f%3A0xa00060055fec4e1!2sRORIRI%20SOFTWARE%20SOLUTIONS%20PVT.LTD.!5e0!3m2!1sen!2sin!4v1735800795252!5m2!1sen!2sin"
@@ -1022,7 +1028,7 @@ hr {
 
     mobileToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
-      
+
       // Change icon based on state
       const icon = mobileToggle.querySelector('i');
       if (navLinks.classList.contains('active')) {
