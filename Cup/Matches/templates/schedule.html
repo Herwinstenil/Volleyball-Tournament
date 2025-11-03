@@ -112,6 +112,23 @@
             transition: all 0.3s ease;
         }
 
+        /* Mobile Toggle Button */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-toggle:hover {
+      transform: scale(1.1);
+      color: #feca57;
+    }
+
         /* ---------- Container ---------- */
         .container {
             width: 90%;
@@ -1061,6 +1078,12 @@
                 <img src="/media/media_files/roriri_logo.png" alt="Roriri Volleyball Cup Logo">
             </div>
         </div>
+
+         <!-- Mobile Toggle Button -->
+    <button class="mobile-toggle" id="mobileToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+
         <div>
             <a href="/register"><i class="fas fa-user-plus"></i> Register</a>
             <a href="/schedule"><i class="fas fa-calendar-alt"></i> Fixtures</a>
@@ -1326,6 +1349,45 @@
                 this.style.transform = 'translateY(0) scale(1)';
             });
         });
+
+         // Mobile Navigation Toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    mobileToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+
+      // Change icon based on state
+      const icon = mobileToggle.querySelector('i');
+      if (navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+        navLinks.classList.remove('active');
+        const icon = mobileToggle.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    });
+
     </script>
 </body>
 
