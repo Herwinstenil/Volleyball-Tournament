@@ -85,6 +85,23 @@
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
+        /* Mobile Toggle Button */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+            transform: scale(1.1);
+            color: #feca57;
+        }
+
         .logo-container {
             position: relative;
             border-radius: 15px;
@@ -960,157 +977,482 @@
             transform: scale(1.1);
         }
 
-        /* Responsive Styles */
+        /* RESPONSIVE MEDIA QUERIES */
 
-        /* Large Screens (≥1200px) */
-        @media (min-width: 1200px) {
-            .container {
-                max-width: 1400px;
-                margin: 0 auto;
-                padding: 0 20px;
-            }
-
-            nav a {
-                font-size: 1.2rem;
-            }
-
-            .map-container {
-                flex: 1 1 350px;
-                min-height: 320px;
-            }
-
-            .contact-info {
-                margin-left: 20px;
-            }
-        }
-
-        /* Medium Screens (≤1199px) */
-        @media (max-width: 1199px) {
-            nav {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            nav div:last-child {
-                margin-top: 10px;
-            }
-
-            nav a {
-                font-size: 1rem;
-                margin: 6px 10px;
-            }
-
-            .bracket-wrapper {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 40px;
-                min-width: auto;
-            }
-
-            footer>div {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                text-align: center;
-            }
-
-            .map-container {
-                width: 100%;
-                min-height: 300px;
-                margin-bottom: 20px;
-            }
-
-            .contact-info {
-                margin-left: 0;
-                text-align: center;
-            }
-        }
-
-        /* Tablets (≤767px) */
-        @media (max-width: 767px) {
-            nav div:last-child {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            nav a {
+        /* Common Mobile Styles (applies to all mobile sizes) */
+        @media screen and (max-width: 425px) {
+            .mobile-toggle {
                 display: block;
-                font-size: 1rem;
-                margin: 6px 0;
-                padding: 8px;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 74, 173, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                margin: 10px 0;
+                font-size: 1.2rem;
+                width: 80%;
+                text-align: center;
+            }
+
+            /* Tournament Header Mobile */
+            .tournament-header {
+                margin: 20px 0;
             }
 
             .tournament-title {
                 font-size: 2rem;
+                margin-bottom: 10px;
             }
 
+            .tournament-subtitle {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            /* Bracket Mobile Layout */
             .bracket-container {
                 padding: 20px;
+                border-radius: 15px;
+                overflow-x: auto;
             }
 
             .bracket-wrapper {
                 grid-template-columns: 1fr;
                 gap: 30px;
+                min-width: 600px;
             }
 
+            /* Round spacing for mobile */
+            .round-16 .matches-container {
+                gap: 15px;
+            }
+
+            .round-8 .matches-container {
+                gap: 40px;
+                padding: 20px 0;
+            }
+
+            .round-4 .matches-container {
+                gap: 80px;
+                padding: 60px 0;
+            }
+
+            .round-2 .matches-container {
+                padding: 100px 0;
+            }
+
+            /* Match styling for mobile */
             .match {
-                width: 100%;
-                max-width: 280px;
-                margin: auto;
+                width: 250px;
+                margin: 0 auto;
+                padding: 15px;
             }
 
+            .match.final {
+                width: 280px;
+            }
+
+            .team {
+                padding: 10px 12px;
+                font-size: 0.9rem;
+            }
+
+            /* Schedule table mobile */
+            .schedule-title,
+            .section-title {
+                font-size: 1.5rem;
+                margin: 30px 0 20px 0;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 700px;
+            }
+
+            th,
+            td {
+                padding: 12px 8px;
+                font-size: 0.85rem;
+            }
+
+            /* Match list mobile */
+            .match-list {
+                padding: 20px;
+            }
+
+            .match-item {
+                padding: 15px;
+                font-size: 0.9rem;
+            }
+
+            .match-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+
+            /* Footer mobile */
             footer>div {
                 flex-direction: column;
-                align-items: center;
-                text-align: center;
             }
 
-            .map-container {
-                width: 100%;
+            .contact-info {
+                margin-left: 0;
+                margin-top: 20px;
+                padding: 15px;
+            }
+
+            .map-container,
+            .map-container iframe {
                 min-height: 250px;
-                margin-bottom: 20px;
+                height: 250px;
             }
 
-            .contact-info h3 {
-                font-size: 1.5rem;
+            /* Performance optimizations for mobile */
+            .particles {
+                display: none;
             }
 
-            .contact-info p {
-                font-size: 1rem;
+            .tournament-title::after {
+                animation: none;
+            }
+
+            th::before {
+                animation: none;
             }
         }
 
-        /* Mobile (≤575px) */
-        @media (max-width: 575px) {
-            nav a {
-                font-size: 0.95rem;
+        /* Small Mobile Optimizations */
+        @media screen and (max-width: 375px) {
+            .container {
+                width: 95%;
+                padding: 10px 0;
             }
 
             .tournament-title {
                 font-size: 1.8rem;
             }
 
-            .round-title {
+            .bracket-container {
+                padding: 15px;
+            }
+
+            .match {
+                width: 220px;
+                padding: 12px;
+            }
+
+            .team {
+                padding: 8px 10px;
+                font-size: 0.85rem;
+            }
+
+            .match-info {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Tablet Styles */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                width: 95%;
+            }
+
+            .tournament-title {
+                font-size: 3rem;
+            }
+
+            .tournament-subtitle {
                 font-size: 1.2rem;
             }
 
-            .map-container {
+            .bracket-wrapper {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                min-width: 800px;
+            }
+
+            .round-2 {
+                grid-column: span 2;
+                justify-self: center;
+            }
+
+            .match {
+                width: 200px;
+            }
+
+            .match.final {
+                width: 230px;
+            }
+        }
+
+        /* Desktop Styles */
+        @media screen and (min-width: 1025px) {
+            .container {
+                width: 90%;
+                max-width: 1400px;
+            }
+
+            .bracket-wrapper {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 60px;
+                min-width: 1200px;
+            }
+
+            /* Restore original spacing for desktop */
+            .round-16 .matches-container {
+                gap: 20px;
+            }
+
+            .round-8 .matches-container {
+                gap: 80px;
+                padding: 40px 0;
+            }
+
+            .round-4 .matches-container {
+                gap: 160px;
+                padding: 120px 0;
+            }
+
+            .round-2 .matches-container {
+                padding: 200px 0;
+            }
+        }
+
+        /* Large Desktop */
+        @media screen and (min-width: 1441px) {
+            .container {
+                max-width: 1600px;
+            }
+
+            .tournament-title {
+                font-size: 4rem;
+            }
+
+            .bracket-wrapper {
+                gap: 80px;
+                min-width: 1400px;
+            }
+
+            .match {
+                width: 240px;
+                padding: 25px;
+            }
+
+            .match.final {
+                width: 270px;
+            }
+        }
+
+        /* 4K Screens */
+        @media screen and (min-width: 2560px) {
+            .container {
+                max-width: 2000px;
+            }
+
+            .tournament-title {
+                font-size: 5rem;
+            }
+
+            .tournament-subtitle {
+                font-size: 1.8rem;
+            }
+
+            .bracket-wrapper {
+                gap: 100px;
+                min-width: 1800px;
+            }
+
+            .match {
+                width: 300px;
+                padding: 30px;
+            }
+
+            .match.final {
+                width: 350px;
+            }
+
+            .team {
+                padding: 15px 20px;
+                font-size: 1.1rem;
+            }
+
+            .round-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) and (pointer: coarse) {
+
+            .match:hover,
+            .match-item:hover,
+            tbody tr:hover {
+                transform: none;
+            }
+
+            .match:active,
+            .match-item:active {
+                transform: scale(0.98);
+            }
+
+            /* Increase touch targets */
+            .match {
+                min-height: 120px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .nav-links a {
+                padding: 12px 16px;
+                margin: 8px 0;
+            }
+        }
+
+        /* High DPI Screens */
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            .match {
+                border-width: 2px;
+            }
+
+            .team {
+                border-left-width: 4px;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .mobile-toggle,
+            .tournament-title::after,
+            th::before,
+            .match-list::before,
+            .particles {
+                display: none;
+            }
+
+            .bracket-container,
+            .table-container,
+            .match-list {
+                box-shadow: none;
+                background: white;
+                border: 1px solid #ccc;
+            }
+
+            .container {
+                max-width: none;
                 width: 100%;
-                min-height: 220px;
             }
 
-            .contact-info {
-                padding: 0 10px;
-                font-size: 0.9rem;
+            .bracket-wrapper {
+                min-width: auto;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
             }
 
-            .contact-info h3 {
-                font-size: 1.3rem;
+            /* Ensure good print contrast */
+            .team.winner {
+                background: #f0f0f0 !important;
+                color: #000 !important;
             }
 
-            .contact-info p {
-                font-size: 0.9rem;
+            .match.final {
+                background: #f8f8f8 !important;
+            }
+        }
+
+        /* Reduced Motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Landscape Mobile Optimizations */
+        @media screen and (max-width: 768px) and (orientation: landscape) {
+            .tournament-header {
+                margin: 10px 0;
+            }
+
+            .tournament-title {
+                font-size: 1.8rem;
+            }
+
+            .bracket-container {
+                padding: 15px;
+            }
+
+            .bracket-wrapper {
+                min-width: 800px;
+            }
+
+            .round-16 .matches-container {
+                gap: 10px;
+            }
+
+            .round-8 .matches-container {
+                gap: 30px;
+                padding: 15px 0;
+            }
+
+            .round-4 .matches-container {
+                gap: 60px;
+                padding: 45px 0;
+            }
+
+            .round-2 .matches-container {
+                padding: 75px 0;
+            }
+        }
+
+        /* Very small screens */
+        @media screen and (max-width: 320px) {
+            .container {
+                width: 98%;
+                padding: 5px 0;
+            }
+
+            .tournament-title {
+                font-size: 1.6rem;
+            }
+
+            .bracket-container {
+                padding: 10px;
+            }
+
+            .match {
+                width: 200px;
+                padding: 10px;
+            }
+
+            .team {
+                padding: 6px 8px;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -1120,11 +1462,18 @@
     <!-- Navbar -->
     <nav>
         <div class="logo-container">
-            <div onclick="window.location.href='/';" style="text-decoration: none;">
+            <div onclick="window.location.href='/';" style="text-decoration: none; cursor: pointer;">
                 <img src="/media/media_files/roriri_logo.png" alt="Roriri Volleyball Cup Logo">
             </div>
         </div>
-        <div>
+
+        <!-- Mobile Toggle Button -->
+        <button class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Navigation Links -->
+        <div class="nav-links" id="navLinks">
             <a href="/register"><i class="fas fa-user-plus"></i> Register</a>
             <a href="/schedule"><i class="fas fa-calendar-alt"></i> Fixtures</a>
             <a href="/scores"><i class="fas fa-trophy"></i> Scores</a>
@@ -1390,6 +1739,44 @@
             match.addEventListener('mouseleave', function () {
                 this.style.transform = 'translateY(0) scale(1)';
             });
+        });
+
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+
+            // Change icon based on state
+            const icon = mobileToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target)) {
+                navLinks.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
     </script>
 </body>
