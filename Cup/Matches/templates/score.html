@@ -46,29 +46,6 @@
             }
         }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-
-        /* Mobile Toggle Button */
-        .mobile-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-toggle:hover {
-            transform: scale(1.1);
-            color: #feca57;
-        }
-
         nav a {
             color: white;
             margin: 0 8px;
@@ -103,6 +80,29 @@
             transform: translateY(-2px) scale(1.05);
             color: white;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Mobile Toggle Button */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+            transform: scale(1.1);
+            color: #feca57;
         }
 
         .logo-container {
@@ -450,7 +450,7 @@
 <body>
     <nav>
         <div class="logo-container">
-            <div onclick="window.location.href='/';" style="text-decoration: none; cursor: pointer;">
+            <div onclick="window.location.href='/';" style="text-decoration: none;">
                 <img src="/media/media_files/roriri_logo.png" alt="Roriri Volleyball Cup Logo">
             </div>
         </div>
@@ -460,7 +460,6 @@
             <i class="fas fa-bars"></i>
         </button>
 
-        <!-- Navigation Links -->
         <div class="nav-links" id="navLinks">
             <a href="/register"><i class="fas fa-user-plus"></i> Register</a>
             <a href="/schedule"><i class="fas fa-calendar-alt"></i> Fixtures</a>
