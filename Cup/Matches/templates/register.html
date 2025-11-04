@@ -80,7 +80,6 @@
             transition: all 0.3s ease;
         }
 
-
         nav a::before {
             content: "";
             position: absolute;
@@ -115,6 +114,11 @@
             cursor: pointer;
             padding: 5px;
             transition: all 0.3s ease;
+        }
+
+        .mobile-toggle:hover {
+            transform: scale(1.1);
+            color: #feca57;
         }
 
         .logo-container {
@@ -832,6 +836,393 @@
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(45deg, #ff6b6b, #feca57);
         }
+
+        /* RESPONSIVE MEDIA QUERIES */
+
+        /* 320px - Extra Small Devices */
+        @media screen and (max-width: 320px) {
+            .header h2 {
+                font-size: 1.8rem;
+                line-height: 1.2;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .container {
+                width: 95%;
+                padding: 20px;
+                margin: 30px auto;
+            }
+
+            .content-section {
+                padding: 15px;
+            }
+
+            nav a {
+                font-size: 1rem;
+                padding: 4px 8px;
+                margin: 0 4px;
+            }
+
+            .contact-info {
+                margin-left: 0;
+                margin-top: 20px;
+                padding: 15px;
+            }
+
+            footer {
+                padding: 15px 5px;
+            }
+
+            .map-container,
+            .map-container iframe {
+                min-height: 200px;
+                height: 200px;
+            }
+
+            .player-box {
+                padding: 20px 15px;
+            }
+
+            .player-box h4 {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+
+            input[type="text"],
+            input[type="file"],
+            input[type="email"] {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 15px;
+                font-size: 16px;
+            }
+
+            h3 {
+                font-size: 1.4rem;
+            }
+
+            label {
+                font-size: 1rem;
+            }
+        }
+
+        /* 375px - Small Mobile */
+        @media screen and (min-width: 321px) and (max-width: 375px) {
+            .header h2 {
+                font-size: 2rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                width: 95%;
+                padding: 25px;
+                margin: 35px auto;
+            }
+
+            .contact-info {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+
+            .map-container,
+            .map-container iframe {
+                min-height: 220px;
+                height: 220px;
+            }
+
+            .player-box {
+                padding: 22px 18px;
+            }
+        }
+
+        /* 425px - Medium Mobile */
+        @media screen and (min-width: 376px) and (max-width: 425px) {
+            .header h2 {
+                font-size: 2.2rem;
+            }
+
+            .header p {
+                font-size: 1.2rem;
+            }
+
+            .container {
+                width: 95%;
+                padding: 30px;
+            }
+
+            .contact-info {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+
+        /* 768px - Tablets */
+        @media screen and (min-width: 426px) and (max-width: 768px) {
+            .header h2 {
+                font-size: 2.8rem;
+            }
+
+            .header p {
+                font-size: 1.3rem;
+            }
+
+            .container {
+                width: 90%;
+                padding: 35px;
+            }
+
+            .contact-info {
+                margin-left: 0;
+                margin-top: 30px;
+            }
+
+            footer>div {
+                flex-direction: column;
+            }
+
+            .map-container,
+            .map-container iframe {
+                min-height: 300px;
+                height: 300px;
+            }
+
+            .player-box {
+                padding: 25px 20px;
+            }
+        }
+
+        /* 1024px - Small Laptops */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .header h2 {
+                font-size: 3.2rem;
+            }
+
+            .container {
+                width: 85%;
+                max-width: 750px;
+            }
+
+            .map-container,
+            .map-container iframe {
+                min-height: 320px;
+                height: 320px;
+            }
+        }
+
+        /* 1440px - Large Screens */
+        @media screen and (min-width: 1441px) {
+            .container {
+                max-width: 900px;
+            }
+
+            .header h2 {
+                font-size: 4rem;
+            }
+
+            .header p {
+                font-size: 1.6rem;
+            }
+
+            .map-container,
+            .map-container iframe {
+                min-height: 400px;
+                height: 400px;
+            }
+
+            .player-box {
+                padding: 30px 25px;
+            }
+
+            input[type="text"],
+            input[type="file"],
+            input[type="email"] {
+                padding: 18px;
+                font-size: 17px;
+            }
+
+            button {
+                padding: 20px;
+                font-size: 20px;
+            }
+
+            h3 {
+                font-size: 2.2rem;
+            }
+
+            label {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* 4K - 2560px */
+        @media screen and (min-width: 2560px) {
+            .container {
+                max-width: 1200px;
+                padding: 60px;
+            }
+
+            .header h2 {
+                font-size: 5rem;
+            }
+
+            .header p {
+                font-size: 2rem;
+            }
+
+            .map-container,
+            .map-container iframe {
+                min-height: 500px;
+                height: 500px;
+            }
+
+            .player-box {
+                padding: 40px 35px;
+                margin-bottom: 30px;
+            }
+
+            input[type="text"],
+            input[type="file"],
+            input[type="email"] {
+                padding: 22px;
+                font-size: 20px;
+                margin-top: 12px;
+            }
+
+            button {
+                padding: 25px;
+                font-size: 24px;
+                margin-top: 40px;
+            }
+
+            h3 {
+                font-size: 2.8rem;
+                margin-top: 60px;
+            }
+
+            label {
+                font-size: 1.6rem;
+                margin-top: 30px;
+            }
+
+            nav a {
+                font-size: 1.5rem;
+            }
+
+            footer {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Common Mobile Styles (applies to all mobile sizes) */
+        @media screen and (max-width: 425px) {
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 74, 173, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links a {
+                margin: 10px 0;
+                font-size: 1.2rem;
+                width: 80%;
+                text-align: center;
+            }
+
+            footer>div {
+                flex-direction: column;
+            }
+
+            .contact-info {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+
+            .particles {
+                display: none;
+            }
+
+            /* Form-specific responsive adjustments */
+            .phone-input {
+                border-radius: 0 0 12px 12px !important;
+                border-left: 2px solid #e0e0e0 !important;
+                border-top: none !important;
+            }
+
+            /* Adjust header padding for mobile */
+            .header {
+                padding: 40px 15px 20px 15px;
+            }
+
+            /* Adjust player box positioning for mobile */
+            .player-box h4 {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 15px;
+                display: inline-block;
+            }
+        }
+
+        /* Large Desktop Optimization */
+        @media screen and (min-width: 1441px) {
+            .particle {
+                width: 6px !important;
+                height: 6px !important;
+            }
+
+            /* Enhance animations for larger screens */
+            .player-box:hover {
+                transform: scale(1.05) translateY(-8px);
+            }
+
+            button:hover {
+                transform: translateY(-8px) scale(1.03);
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+
+            .particles,
+            .mobile-toggle,
+            nav a::before,
+            .container::before {
+                display: none;
+            }
+
+            .container {
+                box-shadow: none;
+                background: white;
+            }
+        }
     </style>
 </head>
 
@@ -848,9 +1239,9 @@
         </div>
 
         <!-- Mobile Toggle Button -->
-        <button class="mobile-toggle" id="mobileToggle">
+        <div class="mobile-toggle" id="mobileToggle">
             <i class="fas fa-bars"></i>
-        </button>
+        </div>
 
         <!-- Navigation Links -->
         <div class="nav-links" id="navLinks">
