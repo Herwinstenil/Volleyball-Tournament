@@ -492,7 +492,6 @@
     }
 
     footer p:hover {
-      color: #feca57;
       transform: scale(1.05);
     }
 
@@ -538,7 +537,6 @@
     }
 
     .contact-info p:hover {
-      color: #feca57;
       transform: translateX(8px);
     }
 
@@ -632,310 +630,297 @@
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(45deg, #ff6b6b, #feca57);
     }
+    /* Smooth transitions for all elements */
+    * {
+      transition: all 0.3s ease;
+    }
 
-    /* ===== RESPONSIVE DESIGN ===== */
-
-    /* Mobile First: 320px and up */
-    @media (max-width: 320px) {
+    /* ==================== RESPONSIVE MEDIA QUERIES ==================== */
+    
+    /* 320px - Extra Small Devices */
+    @media screen and (max-width: 320px) {
       .hero h1 {
         font-size: 1.8rem;
-        margin-bottom: 15px;
+        line-height: 1.2;
       }
-
+      
       .hero p {
+        font-size: 1rem;
+      }
+      
+      .hero-tagline {
         font-size: 0.9rem;
       }
-
-      .hero-tagline {
-        font-size: 0.8rem;
-      }
-
+      
       .hero-content {
         padding: 20px;
-        border-radius: 15px;
+        margin: 0 10px;
       }
-
-      nav {
-        padding: 8px 10px;
-      }
-
-      nav a {
-        font-size: 0.9rem;
-        margin: 0 4px;
-        padding: 4px 8px;
-      }
-
-      .logo-container img {
-        height: 30px;
-      }
-
+      
       .container {
         width: 95%;
         padding: 30px 0;
         margin-top: -30px;
       }
-
+      
       .content-section {
         padding: 20px;
-        margin: 15px 0;
       }
-
-      h3 {
-        font-size: 1.3rem;
-        margin-top: 25px;
+      
+      nav a {
+        font-size: 1rem;
+        padding: 4px 8px;
+        margin: 0 4px;
       }
-
+      
+      .contact-info {
+        margin-left: 0;
+        margin-top: 20px;
+        padding: 15px;
+      }
+      
       footer {
         padding: 15px 5px;
-        font-size: 0.8rem;
+      }
+      
+      .map-container, .map-container iframe {
+        min-height: 200px;
+        height: 200px;
       }
     }
-
+    
     /* 375px - Small Mobile */
-    @media (min-width: 321px) and (max-width: 375px) {
+    @media screen and (min-width: 321px) and (max-width: 375px) {
       .hero h1 {
         font-size: 2rem;
       }
-
-      .hero p {
-        font-size: 1rem;
-      }
-
-      .hero-tagline {
-        font-size: 0.9rem;
-      }
-
-      .hero-content {
-        padding: 25px;
-      }
-
-      nav a {
-        font-size: 1rem;
-      }
-
-      .container {
-        width: 92%;
-      }
-
-      footer {
-        font-size: 0.9rem;
-      }
-    }
-
-    /* 425px - Medium Mobile */
-    @media (min-width: 376px) and (max-width: 425px) {
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-
+      
       .hero p {
         font-size: 1.1rem;
       }
-
+      
+      .hero-content {
+        padding: 25px;
+      }
+      
+      .container {
+        width: 95%;
+        padding: 40px 0;
+        margin-top: -40px;
+      }
+      
+      .contact-info {
+        margin-left: 0;
+        margin-top: 20px;
+      }
+      
+      .map-container, .map-container iframe {
+        min-height: 220px;
+        height: 220px;
+      }
+    }
+    
+    /* 425px - Medium Mobile */
+    @media screen and (min-width: 376px) and (max-width: 425px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
       .hero-content {
         padding: 30px;
       }
-
-      footer {
-        font-size: 1.0rem;
+      
+      .contact-info {
+        margin-left: 0;
+        margin-top: 20px;
       }
     }
-
-    /* 768px - Tablet and Mobile Navigation */
-    @media (max-width: 768px) {
+    
+    /* 768px - Tablets */
+    @media screen and (min-width: 426px) and (max-width: 768px) {
+      .hero h1 {
+        font-size: 3rem;
+      }
+      
+      .hero-content {
+        padding: 40px;
+      }
+      
+      .contact-info {
+        margin-left: 0;
+        margin-top: 30px;
+      }
+      
+      footer > div {
+        flex-direction: column;
+      }
+    }
+    
+    /* 1024px - Small Laptops */
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+      
+      .container {
+        width: 85%;
+      }
+    }
+    
+    /* 1440px - Large Screens */
+    @media screen and (min-width: 1025px) and (max-width: 1440px){
+      .container {
+        max-width: 1400px;
+      }
+      
+      .hero h1 {
+        font-size: 5rem;
+      }
+      
+      .hero p {
+        font-size: 1.8rem;
+      }
+      
+      .hero-tagline {
+        font-size: 1.5rem;
+      }
+    }
+    
+    /* 4K - 2560px */
+    @media screen and (min-width: 2560px) {
+      .container {
+        max-width: 2000px;
+      }
+      
+      .hero h1 {
+        font-size: 6rem;
+      }
+      
+      .hero p {
+        font-size: 2.2rem;
+      }
+      
+      .hero-tagline {
+        font-size: 1.8rem;
+      }
+      
+      .content-section {
+        padding: 60px;
+        margin: 40px 0;
+      }
+      
+      nav a {
+        font-size: 1.5rem;
+      }
+      
+      footer {
+        font-size: 1.3rem;
+      }
+    }
+    
+    /* Common Mobile Styles (applies to all mobile sizes) */
+    @media screen and (max-width: 425px) {
       .mobile-toggle {
         display: block;
       }
-
+      
       .nav-links {
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background: rgba(0, 74, 173, 0.98);
-        backdrop-filter: blur(20px);
+        background: rgba(0, 74, 173, 0.95);
         flex-direction: column;
-        padding: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        transform: translateY(-10px);
+        align-items: center;
+        padding: 20px 0;
+        transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
       }
-
+      
       .nav-links.active {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
       }
-
+      
       .nav-links a {
         margin: 10px 0;
-        padding: 12px 20px;
-        width: 100%;
+        font-size: 1.2rem;
+        width: 80%;
         text-align: center;
-        font-size: 1.1rem;
-        border-radius: 25px;
-        background: rgba(255, 255, 255, 0.1);
       }
-
-      .nav-links a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateX(10px);
-      }
-
-      .container {
-        width: 88%;
-        padding: 50px 0;
-      }
-
-      .content-section {
-        padding: 30px;
-      }
-
-      footer>div {
+      
+      footer > div {
         flex-direction: column;
-        gap: 20px;
       }
-
+      
       .contact-info {
         margin-left: 0;
-        text-align: center;
+        margin-top: 20px;
       }
-
-      .map-container {
-        min-height: 300px;
-      }
-    }
-
-    /* 1024px - Small Desktop */
-    @media (min-width: 769px) and (max-width: 1024px) {
-      .hero h1 {
-        font-size: 3.5rem;
-      }
-
-      .container {
-        width: 85%;
-      }
-
-      .content-section {
-        padding: 35px;
-      }
-
-      footer>div {
-        gap: 25px;
-      }
-    }
-
-    /* 1440px - Large Desktop */
-    @media (min-width: 1025px) and (max-width: 1440px) {
-      .hero h1 {
-        font-size: 4rem;
-      }
-
-      .container {
-        width: 80%;
-        max-width: 1200px;
-      }
-    }
-
-    /* 4K - 2560px and above */
-    @media (min-width: 2560px) {
-      .hero h1 {
-        font-size: 6rem;
-      }
-
-      .hero p {
-        font-size: 2rem;
-      }
-
-      .hero-tagline {
-        font-size: 1.5rem;
-      }
-
-      .hero-content {
-        padding: 80px;
-        border-radius: 50px;
-      }
-
-      nav {
-        padding: 20px 40px;
-      }
-
-      nav a {
-        font-size: 1.5rem;
-        margin: 0 15px;
-        padding: 10px 20px;
-      }
-
-      .logo-container img {
-        height: 60px;
-      }
-
-      .container {
-        width: 70%;
-        max-width: 2000px;
-        padding: 100px 0;
-        margin-top: -80px;
-        border-radius: 40px;
-      }
-
-      .content-section {
-        padding: 60px;
-        border-radius: 25px;
-        margin: 30px 0;
-      }
-
-      h3 {
-        font-size: 2.5rem;
-        margin-top: 60px;
-      }
-
-      footer {
-        padding: 40px 20px;
-        font-size: 1.3rem;
-      }
-
-      footer>div {
-        max-width: 1800px;
-        gap: 50px;
-      }
-
-      .map-container {
-        min-height: 500px;
-      }
-    }
-
-    /* Hero background attachment fix for mobile */
-    @media (max-width: 768px) {
+      
       .hero {
         background-attachment: scroll;
       }
+      
+      .bg-particles {
+        display: none; /* Improve performance on mobile */
+      }
     }
-
-    /* Particle size adjustments for mobile */
-    @media (max-width: 768px) {
+    
+    /* Large Desktop Optimization */
+    @media screen and (min-width: 1441px) {
       .particle {
-        animation-duration: 8s;
+        width: 40px !important;
+        height: 40px !important;
       }
-
-      .particle:nth-child(1),
-      .particle:nth-child(2),
-      .particle:nth-child(3),
-      .particle:nth-child(4),
-      .particle:nth-child(5),
-      .particle:nth-child(6),
-      .particle:nth-child(7),
-      .particle:nth-child(8),
+      
+      .particle:nth-child(1) {
+        width: 30px;
+        height: 30px;
+      }
+      
+      .particle:nth-child(2) {
+        width: 45px;
+        height: 45px;
+      }
+      
+      .particle:nth-child(3) {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .particle:nth-child(4) {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .particle:nth-child(5) {
+        width: 25px;
+        height: 25px;
+      }
+      
+      .particle:nth-child(6) {
+        width: 55px;
+        height: 55px;
+      }
+      
+      .particle:nth-child(7) {
+        width: 30px;
+        height: 30px;
+      }
+      
+      .particle:nth-child(8) {
+        width: 35px;
+        height: 35px;
+      }
+      
       .particle:nth-child(9) {
-        width: 15px;
-        height: 15px;
+        width: 45px;
+        height: 45px;
       }
-    }
-
-    /* Smooth transitions for all elements */
-    * {
-      transition: all 0.3s ease;
     }
   </style>
 </head>
