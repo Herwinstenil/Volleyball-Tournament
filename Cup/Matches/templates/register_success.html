@@ -337,6 +337,397 @@
             }
         }
 
+        /* ========== RESPONSIVE DESIGN ========== */
+
+        /* 4K Screens (2560px and above) */
+        @media (min-width: 2560px) {
+            .container {
+                max-width: 1000px;
+            }
+
+            .success-message {
+                padding: 80px 60px;
+                border-radius: 35px;
+            }
+
+            .success-icon {
+                font-size: 6rem;
+                margin-bottom: 30px;
+            }
+
+            .success-message h1 {
+                font-size: 4.5rem;
+                margin-bottom: 30px;
+            }
+
+            .success-message p {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+                line-height: 1.8;
+            }
+
+            .success-message a {
+                padding: 20px 45px;
+                font-size: 1.4rem;
+                border-radius: 60px;
+            }
+
+            .pulse-bg {
+                width: 400px;
+                height: 400px;
+            }
+
+            .particle {
+                width: 8px;
+                height: 8px;
+            }
+
+            .confetti {
+                width: 12px;
+                height: 12px;
+            }
+        }
+
+        /* Large Desktop (1440px - 2559px) */
+        @media (min-width: 1440px) and (max-width: 2559px) {
+            .container {
+                max-width: 900px;
+            }
+
+            .success-message {
+                padding: 70px 50px;
+            }
+
+            .success-icon {
+                font-size: 5rem;
+            }
+
+            .success-message h1 {
+                font-size: 3.5rem;
+            }
+
+            .success-message p {
+                font-size: 1.5rem;
+            }
+
+            .success-message a {
+                padding: 18px 40px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Desktop (1024px - 1439px) */
+        @media (min-width: 1024px) and (max-width: 1439px) {
+            .container {
+                max-width: 800px;
+            }
+
+            .success-message {
+                padding: 60px 40px;
+            }
+
+            .success-icon {
+                font-size: 4.5rem;
+            }
+
+            .success-message h1 {
+                font-size: 3.2rem;
+            }
+
+            .success-message p {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* Tablet Landscape (768px - 1023px) */
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .container {
+                width: 95%;
+                max-width: 700px;
+            }
+
+            .success-message {
+                padding: 50px 35px;
+                border-radius: 22px;
+            }
+
+            .success-icon {
+                font-size: 3.8rem;
+                margin-bottom: 18px;
+            }
+
+            .success-message h1 {
+                font-size: 2.8rem;
+                margin-bottom: 18px;
+            }
+
+            .success-message p {
+                font-size: 1.3rem;
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+
+            .success-message a {
+                padding: 14px 32px;
+                font-size: 1.1rem;
+            }
+
+            .pulse-bg {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        /* Mobile Landscape (425px - 767px) */
+        @media (min-width: 425px) and (max-width: 767px) {
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .success-message {
+                padding: 40px 25px;
+                border-radius: 20px;
+            }
+
+            .success-icon {
+                font-size: 3.2rem;
+                margin-bottom: 15px;
+            }
+
+            .success-message h1 {
+                font-size: 2.2rem;
+                margin-bottom: 15px;
+            }
+
+            .success-message p {
+                font-size: 1.1rem;
+                margin-bottom: 20px;
+                line-height: 1.4;
+            }
+
+            .success-message a {
+                padding: 12px 28px;
+                font-size: 1rem;
+                border-radius: 40px;
+            }
+
+            .pulse-bg {
+                width: 200px;
+                height: 200px;
+            }
+
+            /* Reduce animation intensity on mobile */
+            .particle {
+                width: 3px;
+                height: 3px;
+            }
+
+            .confetti {
+                width: 6px;
+                height: 6px;
+            }
+        }
+
+        /* Mobile Portrait (375px - 424px) */
+        @media (min-width: 375px) and (max-width: 424px) {
+            .container {
+                width: 98%;
+                padding: 10px;
+            }
+
+            .success-message {
+                padding: 35px 20px;
+                border-radius: 18px;
+            }
+
+            .success-icon {
+                font-size: 2.8rem;
+                margin-bottom: 12px;
+            }
+
+            .success-message h1 {
+                font-size: 1.9rem;
+                margin-bottom: 12px;
+            }
+
+            .success-message p {
+                font-size: 1rem;
+                margin-bottom: 18px;
+                line-height: 1.4;
+            }
+
+            .success-message a {
+                padding: 10px 24px;
+                font-size: 0.95rem;
+                gap: 8px;
+            }
+
+            .pulse-bg {
+                width: 180px;
+                height: 180px;
+            }
+        }
+
+        /* Small Mobile (320px - 374px) */
+        @media (max-width: 374px) {
+            .container {
+                width: 98%;
+                padding: 8px;
+            }
+
+            .success-message {
+                padding: 30px 15px;
+                border-radius: 15px;
+            }
+
+            .success-icon {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+
+            .success-message h1 {
+                font-size: 1.7rem;
+                margin-bottom: 10px;
+                line-height: 1.2;
+            }
+
+            .success-message p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+                line-height: 1.3;
+            }
+
+            .success-message a {
+                padding: 8px 20px;
+                font-size: 0.9rem;
+                gap: 6px;
+                width: 100%;
+                max-width: 200px;
+                justify-content: center;
+            }
+
+            .pulse-bg {
+                width: 150px;
+                height: 150px;
+            }
+
+            /* Further reduce animations on very small screens */
+            .particle {
+                display: none;
+            }
+
+            .confetti {
+                display: none;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .success-message a:hover {
+                transform: none;
+            }
+
+            .success-message a:active {
+                transform: scale(0.98);
+            }
+        }
+
+        /* High DPI screens optimization */
+        @media (-webkit-min-device-pixel-ratio: 2),
+        (min-resolution: 192dpi) {
+            .success-message {
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+
+        /* Reduced motion support for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .success-message {
+                animation: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+
+            .success-icon,
+            .success-message h1,
+            .success-message p,
+            .btn-container {
+                animation: none !important;
+                transform: none !important;
+                opacity: 1 !important;
+            }
+
+            .particle,
+            .confetti,
+            .pulse-bg {
+                display: none;
+            }
+        }
+
+        /* Orientation specific adjustments */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .container {
+                height: auto;
+                min-height: 100vh;
+                padding: 10px;
+            }
+
+            .success-message {
+                padding: 25px 20px;
+                margin: 20px 0;
+            }
+
+            .success-icon {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+            }
+
+            .success-message h1 {
+                font-size: 1.8rem;
+                margin-bottom: 10px;
+            }
+
+            .success-message p {
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+
+            .particle,
+            .confetti,
+            .pulse-bg,
+            .success-message::before {
+                display: none;
+            }
+
+            .success-message {
+                background: white;
+                box-shadow: none;
+                animation: none;
+                transform: none;
+                opacity: 1;
+            }
+
+            .success-icon,
+            .success-message h1,
+            .success-message p,
+            .btn-container {
+                animation: none;
+                transform: none;
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 
@@ -409,16 +800,21 @@
 
         // Initialize animations
         document.addEventListener('DOMContentLoaded', function () {
-            createParticles();
+            // Check if user prefers reduced motion
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            // Create confetti after a delay
-            setTimeout(createConfetti, 1000);
-
-            // Recreate particles and confetti every 10 seconds (reduced frequency)
-            setInterval(() => {
+            if (!prefersReducedMotion) {
                 createParticles();
-                createConfetti();
-            }, 10000);
+
+                // Create confetti after a delay
+                setTimeout(createConfetti, 1000);
+
+                // Recreate particles and confetti every 10 seconds (reduced frequency)
+                setInterval(() => {
+                    createParticles();
+                    createConfetti();
+                }, 10000);
+            }
         });
 
         // Add click effect to button
@@ -462,6 +858,28 @@
             }
         `;
         document.head.appendChild(style);
-    </script>
 
-   
+        // Handle viewport changes
+        function handleResize() {
+            const container = document.querySelector('.container');
+            const successMessage = document.querySelector('.success-message');
+
+            // Adjust for very small heights
+            if (window.innerHeight < 500) {
+                container.style.padding = '10px';
+                successMessage.style.margin = '10px 0';
+            } else {
+                container.style.padding = '20px';
+                successMessage.style.margin = '0';
+            }
+        }
+
+        // Initial call
+        handleResize();
+
+        // Listen for resize events
+        window.addEventListener('resize', handleResize);
+    </script>
+</body>
+
+</html>
