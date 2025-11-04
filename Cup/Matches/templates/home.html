@@ -630,200 +630,203 @@
     ::-webkit-scrollbar-thumb:hover {
       background: linear-gradient(45deg, #ff6b6b, #feca57);
     }
+
     /* Smooth transitions for all elements */
     * {
       transition: all 0.3s ease;
     }
 
     /* ==================== RESPONSIVE MEDIA QUERIES ==================== */
-    
+
     /* 320px - Extra Small Devices */
     @media screen and (max-width: 320px) {
       .hero h1 {
         font-size: 1.8rem;
         line-height: 1.2;
       }
-      
+
       .hero p {
         font-size: 1rem;
       }
-      
+
       .hero-tagline {
         font-size: 0.9rem;
       }
-      
+
       .hero-content {
         padding: 20px;
         margin: 0 10px;
       }
-      
+
       .container {
         width: 95%;
         padding: 30px 0;
         margin-top: -30px;
       }
-      
+
       .content-section {
         padding: 20px;
       }
-      
+
       nav a {
         font-size: 1rem;
         padding: 4px 8px;
         margin: 0 4px;
       }
-      
+
       .contact-info {
         margin-left: 0;
         margin-top: 20px;
         padding: 15px;
       }
-      
+
       footer {
         padding: 15px 5px;
       }
-      
-      .map-container, .map-container iframe {
+
+      .map-container,
+      .map-container iframe {
         min-height: 200px;
         height: 200px;
       }
     }
-    
+
     /* 375px - Small Mobile */
     @media screen and (min-width: 321px) and (max-width: 375px) {
       .hero h1 {
         font-size: 2rem;
       }
-      
+
       .hero p {
         font-size: 1.1rem;
       }
-      
+
       .hero-content {
         padding: 25px;
       }
-      
+
       .container {
         width: 95%;
         padding: 40px 0;
         margin-top: -40px;
       }
-      
+
       .contact-info {
         margin-left: 0;
         margin-top: 20px;
       }
-      
-      .map-container, .map-container iframe {
+
+      .map-container,
+      .map-container iframe {
         min-height: 220px;
         height: 220px;
       }
     }
-    
+
     /* 425px - Medium Mobile */
     @media screen and (min-width: 376px) and (max-width: 425px) {
       .hero h1 {
         font-size: 2.2rem;
       }
-      
+
       .hero-content {
         padding: 30px;
       }
-      
+
       .contact-info {
         margin-left: 0;
         margin-top: 20px;
       }
     }
-    
+
     /* 768px - Tablets */
     @media screen and (min-width: 426px) and (max-width: 768px) {
       .hero h1 {
         font-size: 3rem;
       }
-      
+
       .hero-content {
         padding: 40px;
       }
-      
+
       .contact-info {
         margin-left: 0;
         margin-top: 30px;
       }
-      
-      footer > div {
+
+      footer>div {
         flex-direction: column;
       }
     }
-    
+
     /* 1024px - Small Laptops */
     @media screen and (min-width: 769px) and (max-width: 1024px) {
       .hero h1 {
         font-size: 3.5rem;
       }
-      
+
       .container {
         width: 85%;
       }
     }
-    
+
     /* 1440px - Large Screens */
-    @media screen and (min-width: 1025px) and (max-width: 1440px){
+    @media screen and (min-width: 1025px) and (max-width: 1440px) {
       .container {
         max-width: 1400px;
       }
-      
+
       .hero h1 {
         font-size: 5rem;
       }
-      
+
       .hero p {
         font-size: 1.8rem;
       }
-      
+
       .hero-tagline {
         font-size: 1.5rem;
       }
     }
-    
+
     /* 4K - 2560px */
     @media screen and (min-width: 2560px) {
       .container {
         max-width: 2000px;
       }
-      
+
       .hero h1 {
         font-size: 6rem;
       }
-      
+
       .hero p {
         font-size: 2.2rem;
       }
-      
+
       .hero-tagline {
         font-size: 1.8rem;
       }
-      
+
       .content-section {
         padding: 60px;
         margin: 40px 0;
       }
-      
+
       nav a {
         font-size: 1.5rem;
       }
-      
+
       footer {
         font-size: 1.3rem;
       }
     }
-    
+
     /* Common Mobile Styles (applies to all mobile sizes) */
     @media screen and (max-width: 425px) {
       .mobile-toggle {
         display: block;
       }
-      
+
       .nav-links {
         position: absolute;
         top: 100%;
@@ -838,85 +841,86 @@
         visibility: hidden;
         transition: all 0.3s ease;
       }
-      
+
       .nav-links.active {
         transform: translateY(0);
         opacity: 1;
         visibility: visible;
       }
-      
+
       .nav-links a {
         margin: 10px 0;
         font-size: 1.2rem;
         width: 80%;
         text-align: center;
       }
-      
-      footer > div {
+
+      footer>div {
         flex-direction: column;
       }
-      
+
       .contact-info {
         margin-left: 0;
         margin-top: 20px;
       }
-      
+
       .hero {
         background-attachment: scroll;
       }
-      
+
       .bg-particles {
-        display: none; /* Improve performance on mobile */
+        display: none;
+        /* Improve performance on mobile */
       }
     }
-    
+
     /* Large Desktop Optimization */
     @media screen and (min-width: 1441px) {
       .particle {
         width: 40px !important;
         height: 40px !important;
       }
-      
+
       .particle:nth-child(1) {
         width: 30px;
         height: 30px;
       }
-      
+
       .particle:nth-child(2) {
         width: 45px;
         height: 45px;
       }
-      
+
       .particle:nth-child(3) {
         width: 35px;
         height: 35px;
       }
-      
+
       .particle:nth-child(4) {
         width: 50px;
         height: 50px;
       }
-      
+
       .particle:nth-child(5) {
         width: 25px;
         height: 25px;
       }
-      
+
       .particle:nth-child(6) {
         width: 55px;
         height: 55px;
       }
-      
+
       .particle:nth-child(7) {
         width: 30px;
         height: 30px;
       }
-      
+
       .particle:nth-child(8) {
         width: 35px;
         height: 35px;
       }
-      
+
       .particle:nth-child(9) {
         width: 45px;
         height: 45px;
