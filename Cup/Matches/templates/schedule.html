@@ -49,6 +49,12 @@
             }
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
         nav a {
             color: white;
             margin: 0 8px;
@@ -1242,7 +1248,7 @@
         }
 
         /* Large Desktop */
-        @media screen and (min-width: 1441px) {
+        @media screen and (min-width: 1440px) {
             .container {
                 max-width: 1600px;
             }
@@ -1427,6 +1433,10 @@
 
             .round-2 .matches-container {
                 padding: 75px 0;
+            }
+
+            footer>div {
+                flex-direction: column;
             }
         }
 
