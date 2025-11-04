@@ -1260,7 +1260,7 @@
 
     <!-- Form Container -->
     <div class="container">
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" id="registrationForm">
             {% csrf_token %}
 
             <!-- Team Info -->
@@ -1293,7 +1293,7 @@
             </div>
             {% endfor %}
 
-            <button type="submit">Submit Registration</button>
+            <button type="submit"  id="submitBtn">Submit Registration</button>
         </form>
     </div>
 
@@ -1398,11 +1398,13 @@
             });
         });
 
-        // Add form validation with animations
-        document.querySelector('form').addEventListener('submit', function (e) {
+        // Form validation and submission
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            const submitBtn = document.getElementById('submitBtn');
             const requiredFields = this.querySelectorAll('input[required]');
             let isValid = true;
 
+            // Validate required fields
             requiredFields.forEach(field => {
                 if (!field.value.trim()) {
                     isValid = false;
@@ -1418,8 +1420,17 @@
 
             if (!isValid) {
                 e.preventDefault();
+                alert('Please fill in all required fields marked with *');
+                return;
             }
+
+            // Add loading state to button
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
+            submitBtn.disabled = true;
+            
+            // Form will submit normally to Django view
         });
+
 
         // Add input focus effects
         document.querySelectorAll('input').forEach(input => {

@@ -20,24 +20,33 @@ def home(request):
     })
 
 
-def register(request):
+def register(request):    
     if request.method == "POST":
         reg_form = RegistrationForm(request.POST)
-        player_formset = PlayerFormSet(request.POST, request.FILES, queryset=Player.objects.none())
-
+        player_formset = PlayerFormSet(request.POST, request.FILES)
+        
         if reg_form.is_valid() and player_formset.is_valid():
-            registration = reg_form.save()
-
-            for player_form in player_formset:
-                if player_form.cleaned_data.get("name") and player_form.cleaned_data.get("id_card"):
-                    player = player_form.save(commit=False)
-                    player.registration = registration
-                    player.save()
-
-            return render(request, "register_success.html", {"team": registration})
+            try:
+                # Save registration
+                registration = reg_form.save()
+                
+                # Save players
+                for player_form in player_formset:
+                    if player_form.cleaned_data.get("name") and player_form.cleaned_data.get("id_card"):
+                        player = player_form.save(commit=False)
+                        player.registration = registration
+                        player.save()
+                
+                # Redirect to success page with team data
+                return render(request, "register_success.html", {"team": registration})
+                
+            except Exception as e:
+                # Handle any errors during save
+                print(f"Error saving registration: {e}")
+                
     else:
         reg_form = RegistrationForm()
-        player_formset = PlayerFormSet(queryset=Player.objects.none())
+        player_formset = PlayerFormSet()
 
     return render(request, "register.html", {
         "reg_form": reg_form,
